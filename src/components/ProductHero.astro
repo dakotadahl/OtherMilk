@@ -1,0 +1,235 @@
+---
+import SubscribeBtn from './SubscribeBtn.astro';
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const webpImage = product.image.replace(/\.jpg$/, '.webp');
+---
+
+<section class="phero" aria-label={product.name}>
+  <div class="phero__layout">
+    <div class="phero__image-col">
+      <div class="phero__frame">
+        <picture>
+          <source srcset={webpImage} type="image/webp" />
+          <img
+            src={product.image}
+            alt={product.name}
+            width="468"
+            height="402"
+            fetchpriority="high"
+          />
+        </picture>
+        <div class="phero__badge">
+          <span>{product.price}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="phero__text-col">
+      <p class="phero__back">
+        <a href="/" class="phero__back-link">&larr; Back to all products</a>
+      </p>
+      <h1 class="phero__name">{product.name}</h1>
+      <p class="phero__tagline">{product.tagline}</p>
+      <p class="phero__desc">{product.description}</p>
+
+      <div class="phero__ingredients">
+        <h2 class="phero__sub-heading">Ingredients</h2>
+        <p class="phero__ingredient-list">
+          {product.ingredients.join(' · ')}
+        </p>
+      </div>
+
+      <div class="phero__actions">
+        <SubscribeBtn />
+        <span class="phero__aside">Free local delivery every week.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .phero {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(24px, 3.47vw, 50px) 20px clamp(40px, 4.17vw, 60px);
+  }
+
+  .phero__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 4.86vw, 70px);
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .phero__image-col {
+    position: relative;
+  }
+
+  .phero__frame {
+    position: relative;
+    background: var(--color-white);
+    border: 1px solid var(--color-pop);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-postcard);
+    overflow: hidden;
+    rotate: -1.5deg;
+    max-width: 500px;
+  }
+
+  .phero__frame picture {
+    display: block;
+  }
+
+  .phero__frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    aspect-ratio: 468 / 402;
+    object-fit: cover;
+  }
+
+  .phero__badge {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    width: 90px;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-pop-accessible);
+    color: var(--color-white);
+    border: 2px solid var(--color-white);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+
+  .phero__text-col {
+    padding-top: clamp(0px, 2.08vw, 30px);
+  }
+
+  .phero__back {
+    margin-bottom: clamp(16px, 1.67vw, 24px);
+  }
+
+  .phero__back-link {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-pop-accessible);
+    transition: opacity 0.2s;
+  }
+
+  .phero__back-link:hover {
+    opacity: 0.7;
+  }
+
+  .phero__name {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.17vw, 60px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--color-pop);
+  }
+
+  .phero__tagline {
+    margin-top: clamp(8px, 0.83vw, 12px);
+    font-family: var(--font-body);
+    font-style: oblique;
+    font-size: clamp(16px, 1.39vw, 20px);
+    color: var(--color-dark);
+    line-height: 1.4;
+  }
+
+  .phero__desc {
+    margin-top: clamp(16px, 1.39vw, 20px);
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.11vw, 16px);
+    line-height: 1.6;
+    color: var(--color-dark);
+  }
+
+  .phero__ingredients {
+    margin-top: clamp(24px, 2.08vw, 30px);
+    padding-top: clamp(20px, 1.67vw, 24px);
+    border-top: 1px solid var(--color-pop);
+  }
+
+  .phero__sub-heading {
+    font-family: var(--font-display);
+    font-size: clamp(14px, 1.11vw, 16px);
+    text-transform: uppercase;
+    color: var(--color-pop-accessible);
+    letter-spacing: 1px;
+  }
+
+  .phero__ingredient-list {
+    margin-top: 8px;
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.04vw, 15px);
+    color: #595959;
+    letter-spacing: 0.5px;
+  }
+
+  .phero__actions {
+    margin-top: clamp(28px, 2.22vw, 32px);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .phero__aside {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: #595959;
+  }
+
+  @media (max-width: 768px) {
+    .phero__layout {
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .phero__frame {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+
+    .phero__text-col {
+      padding-top: 0;
+      text-align: center;
+    }
+
+    .phero__back {
+      text-align: left;
+    }
+
+    .phero__actions {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .phero__badge {
+      width: 72px;
+      height: 72px;
+      font-size: 17px;
+      top: 16px;
+      right: 16px;
+    }
+  }
+</style>

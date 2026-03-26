@@ -19,22 +19,29 @@ Marketing site for Other Milk — a locally sourced, small-batch pecan milk bran
 
 ```
 src/
-  pages/index.astro        — Single landing page, composes all sections
-  layouts/Base.astro       — HTML shell, meta tags, structured data, @font-face
+  pages/
+    index.astro              — Landing page, composes all sections
+    products/[slug].astro    — Dynamic product page template
+  data/products.ts           — Product catalog (details, nutrition, recipes, reviews)
+  layouts/Base.astro         — HTML shell, meta tags, structured data, @font-face
   components/
-    Nav.astro              — Header with logo + cart link + subscribe button
-    Hero.astro             — Decorative X strings + hero image
-    Headline.astro         — Title + body text + CTA
-    ProductSection.astro   — Two-column overlapping card grid
-    ProductCard.astro      — Individual product card (image, price badge, details)
-    LifestyleBanner.astro  — Full-width lifestyle photo with text overlay
-    Footer.astro           — Mega wordmark + footer nav links
-    SubscribeBtn.astro     — Reusable subscribe button
-    AgentationToolbar.tsx  — Dev-only annotation toolbar (React)
-  styles/global.css        — Design tokens, reset, utilities
+    Nav.astro                — Header with logo + cart link + subscribe button
+    Hero.astro               — Decorative X strings + hero image
+    Headline.astro           — Title + body text + CTA
+    ProductSection.astro     — Two-column overlapping card grid
+    ProductCard.astro        — Individual product card (image, price badge, details)
+    ProductHero.astro        — Product page hero (image + details + CTA)
+    NutritionTable.astro     — Nutrition facts table card
+    RecipesSection.astro     — Recipe cards grid
+    SocialProof.astro        — Customer review cards grid
+    LifestyleBanner.astro    — Full-width lifestyle photo with text overlay
+    Footer.astro             — Mega wordmark + footer nav links
+    SubscribeBtn.astro       — Reusable subscribe button
+    AgentationToolbar.tsx    — Dev-only annotation toolbar (React)
+  styles/global.css          — Design tokens, reset, utilities
 public/
-  images/                  — Static images (hero, products, lifestyle, logos)
-  fonts/                   — Licensed font files (.woff2)
+  images/                    — Static images (hero, products, lifestyle, logos)
+  fonts/                     — Licensed font files (.woff2)
 ```
 
 ## Styling Conventions

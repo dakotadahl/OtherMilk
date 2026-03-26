@@ -1,0 +1,152 @@
+---
+import type { Recipe } from '../data/products';
+
+interface Props {
+  recipes: Recipe[];
+  productName: string;
+}
+
+const { recipes, productName } = Astro.props;
+---
+
+<section class="recipes" aria-label={`Recipes with ${productName}`}>
+  <div class="recipes__inner">
+    <div class="recipes__header">
+      <h2 class="recipes__title">Make<br />something<br />good.</h2>
+    </div>
+
+    <div class="recipes__grid">
+      {recipes.map((recipe, i) => (
+        <article
+          class="recipe-card"
+          style={`--card-delay: ${i * 0.1}s; --card-rot: ${(i % 2 === 0 ? -1 : 1) * (0.5 + i * 0.3)}deg`}
+        >
+          <div class="recipe-card__number">
+            <span>{String(i + 1).padStart(2, '0')}</span>
+          </div>
+          <h3 class="recipe-card__title">{recipe.title}</h3>
+          <p class="recipe-card__desc">{recipe.description}</p>
+          <div class="recipe-card__meta">
+            <span class="recipe-card__time">{recipe.time}</span>
+            <span class="recipe-card__dot">&middot;</span>
+            <span class="recipe-card__difficulty">{recipe.difficulty}</span>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .recipes {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(40px, 5.56vw, 80px) 20px;
+  }
+
+  .recipes__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .recipes__header {
+    margin-bottom: clamp(32px, 3.47vw, 50px);
+  }
+
+  .recipes__title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5.56vw, 80px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    line-height: 0.95;
+  }
+
+  .recipes__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.08vw, 30px);
+  }
+
+  .recipe-card {
+    background: var(--color-white);
+    border: 1px solid var(--color-pop);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-postcard);
+    padding: clamp(24px, 2.22vw, 32px);
+    rotate: var(--card-rot);
+    transition: box-shadow 0.4s ease, rotate 0.4s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .recipe-card:hover {
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+    rotate: 0deg;
+  }
+
+  .recipe-card__number {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-pop);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    border-radius: 100px;
+    margin-bottom: clamp(16px, 1.39vw, 20px);
+  }
+
+  .recipe-card__title {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 1.53vw, 22px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    line-height: 1.15;
+  }
+
+  .recipe-card__desc {
+    margin-top: clamp(8px, 0.83vw, 12px);
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.04vw, 15px);
+    line-height: 1.55;
+    color: var(--color-dark);
+    flex: 1;
+  }
+
+  .recipe-card__meta {
+    margin-top: clamp(16px, 1.39vw, 20px);
+    padding-top: clamp(12px, 1.04vw, 16px);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-pop-accessible);
+  }
+
+  .recipe-card__dot {
+    color: rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .recipes__grid {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .recipes__title {
+      text-align: center;
+    }
+  }
+</style>

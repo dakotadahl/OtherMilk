@@ -1,0 +1,122 @@
+---
+import type { NutritionFact } from '../data/products';
+
+interface Props {
+  nutrition: NutritionFact[];
+  servingSize?: string;
+}
+
+const { nutrition, servingSize = '8 fl oz (240ml)' } = Astro.props;
+---
+
+<section class="nutrition" aria-label="Nutrition facts">
+  <div class="nutrition__inner">
+    <h2 class="nutrition__title">Nutrition Facts</h2>
+    <p class="nutrition__serving">Serving size {servingSize}</p>
+    <table class="nutrition__table">
+      <thead class="sr-only">
+        <tr>
+          <th>Nutrient</th>
+          <th>Amount</th>
+          <th>Daily Value</th>
+        </tr>
+      </thead>
+      <tbody>
+        {nutrition.map((fact, i) => (
+          <tr class:list={['nutrition__row', { 'nutrition__row--first': i === 0 }]}>
+            <td class="nutrition__label">{fact.label}</td>
+            <td class="nutrition__value">{fact.value}</td>
+            <td class="nutrition__daily">{fact.daily ?? ''}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<style>
+  .nutrition {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 20px clamp(40px, 4.17vw, 60px);
+  }
+
+  .nutrition__inner {
+    max-width: 500px;
+    margin: 0 auto;
+    background: var(--color-white);
+    border: 1px solid var(--color-pop);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-postcard);
+    padding: clamp(24px, 2.78vw, 40px);
+    rotate: 0.6deg;
+  }
+
+  .nutrition__title {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.22vw, 32px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    line-height: 1.1;
+  }
+
+  .nutrition__serving {
+    margin-top: 4px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #595959;
+    padding-bottom: clamp(12px, 1.11vw, 16px);
+    border-bottom: 3px solid var(--color-dark);
+  }
+
+  .nutrition__table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .nutrition__row {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
+
+  .nutrition__row--first {
+    border-top: none;
+  }
+
+  .nutrition__row--first .nutrition__label,
+  .nutrition__row--first .nutrition__value {
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--color-dark);
+  }
+
+  .nutrition__label,
+  .nutrition__value,
+  .nutrition__daily {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-dark);
+    padding: 8px 0;
+  }
+
+  .nutrition__label {
+    text-align: left;
+  }
+
+  .nutrition__value {
+    text-align: right;
+    font-weight: 700;
+    padding-right: 16px;
+  }
+
+  .nutrition__daily {
+    text-align: right;
+    color: #595959;
+    width: 60px;
+  }
+
+  @media (max-width: 480px) {
+    .nutrition__inner {
+      rotate: 0deg;
+    }
+  }
+</style>

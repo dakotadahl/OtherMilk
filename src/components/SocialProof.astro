@@ -1,0 +1,157 @@
+---
+import type { Review } from '../data/products';
+
+interface Props {
+  reviews: Review[];
+}
+
+const { reviews } = Astro.props;
+---
+
+<section class="proof" aria-label="Customer reviews">
+  <div class="proof__inner">
+    <div class="proof__header">
+      <svg class="proof__star-icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+      </svg>
+      <h2 class="proof__title">Don't take our<br />word for it.</h2>
+      <svg class="proof__star-icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+      </svg>
+    </div>
+
+    <div class="proof__grid">
+      {reviews.map((review, i) => (
+        <blockquote
+          class="review"
+          style={`--review-rot: ${(i % 2 === 0 ? 1 : -1) * (0.4 + i * 0.25)}deg`}
+        >
+          <div class="review__stars" role="img" aria-label={`${review.stars} out of 5 stars`}>
+            {Array.from({ length: review.stars }).map(() => (
+              <svg class="review__star" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+              </svg>
+            ))}
+          </div>
+          <p class="review__text">&ldquo;{review.text}&rdquo;</p>
+          <footer class="review__author">
+            <cite class="review__name">{review.name}</cite>
+            <span class="review__location">{review.location}</span>
+          </footer>
+        </blockquote>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .proof {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(40px, 5.56vw, 80px) 20px;
+  }
+
+  .proof__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .proof__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(16px, 2.08vw, 30px);
+    margin-bottom: clamp(40px, 4.17vw, 60px);
+  }
+
+  .proof__star-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .proof__title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.17vw, 60px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    line-height: 0.95;
+    text-align: center;
+  }
+
+  .proof__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.08vw, 30px);
+  }
+
+  .review {
+    background: var(--color-white);
+    border: 1px solid var(--color-pop);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-postcard);
+    padding: clamp(24px, 2.22vw, 32px);
+    rotate: var(--review-rot);
+    transition: box-shadow 0.4s ease, rotate 0.4s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .review:hover {
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+    rotate: 0deg;
+  }
+
+  .review__stars {
+    display: flex;
+    gap: 4px;
+    margin-bottom: clamp(12px, 1.11vw, 16px);
+  }
+
+  .review__star {
+    width: 12px;
+    height: 12px;
+  }
+
+  .review__text {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.11vw, 16px);
+    line-height: 1.55;
+    color: var(--color-dark);
+    flex: 1;
+  }
+
+  .review__author {
+    margin-top: clamp(16px, 1.39vw, 20px);
+    padding-top: clamp(12px, 1.04vw, 16px);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .review__name {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    font-style: normal;
+    color: var(--color-dark);
+  }
+
+  .review__location {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: #595959;
+  }
+
+  @media (max-width: 768px) {
+    .proof__grid {
+      grid-template-columns: 1fr;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+  }
+</style>

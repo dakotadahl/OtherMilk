@@ -4,15 +4,17 @@ interface Props {
   price: string;
   description: string;
   image: string;
+  slug?: string;
   rotation?: number;
 }
 
-const { name, price, description, image, rotation = 0 } = Astro.props;
+const { name, price, description, image, slug, rotation = 0 } = Astro.props;
 const webpImage = image.replace(/\.jpg$/, '.webp');
+const href = slug ? `/products/${slug}` : '#';
 ---
 
 <article class="card" style={`--card-rotation: ${rotation}deg`}>
-  <a href="#" class="card__link" aria-label={`View ${name}`}>
+  <a href={href} class="card__link" aria-label={`View ${name}`}>
     <div class="card__image">
       <picture>
         <source srcset={webpImage} type="image/webp" />
