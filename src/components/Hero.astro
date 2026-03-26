@@ -1,0 +1,90 @@
+<section class="hero" aria-label="Hero image">
+  <div class="hero__string">
+    <svg class="hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+    </svg>
+    <svg class="hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+    </svg>
+  </div>
+
+  <div class="hero__image-wrap">
+    <img
+      src="/images/hero.jpg"
+      alt="Hand holding a bottle of Other Milk pecan milk"
+      width="1163"
+      height="723"
+      fetchpriority="high"
+    />
+  </div>
+
+  <div class="hero__string">
+    <svg class="hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+    </svg>
+    <svg class="hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+    </svg>
+  </div>
+</section>
+
+<style>
+  .hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .hero__string {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 728px;
+    padding: 36px 0;
+  }
+
+  .hero__x {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  @keyframes heroEntrance {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .hero__image-wrap {
+    width: 100%;
+    max-width: 1163px;
+    border-radius: var(--radius-hero);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    overflow: hidden;
+    box-shadow: var(--shadow-postcard);
+    rotate: -0.82deg;
+    animation: heroEntrance 0.75s ease-out both;
+  }
+
+  .hero__image-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .hero__image-wrap {
+      rotate: 0deg;
+    }
+  }
+</style>

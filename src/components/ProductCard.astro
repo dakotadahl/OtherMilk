@@ -1,0 +1,113 @@
+---
+interface Props {
+  name: string;
+  price: string;
+  description: string;
+  image: string;
+  rotation?: number;
+}
+
+const { name, price, description, image, rotation = 0 } = Astro.props;
+---
+
+<article class="card" style={`--card-rotation: ${rotation}deg`}>
+  <div class="card__image">
+    <img src={image} alt={name} width="468" height="402" loading="lazy" decoding="async" />
+  </div>
+  <div class="card__price">
+    <span>{price}</span>
+  </div>
+  <div class="card__details">
+    <h3 class="card__name">{name}</h3>
+    <p class="card__desc">{description}</p>
+  </div>
+</article>
+
+<style>
+  .card {
+    position: relative;
+    background: var(--color-white);
+    border: 1px solid var(--color-pop);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-postcard);
+    overflow: hidden;
+    width: 468px;
+    max-width: 100%;
+    rotate: var(--card-rotation);
+    transition: box-shadow 0.4s ease;
+  }
+
+  .card:hover {
+    z-index: 2;
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .card:hover .card__price {
+    background: var(--color-pop);
+    color: var(--color-white);
+    border-color: var(--color-white);
+  }
+
+  .card__image {
+    border-radius: 20px 20px 0 0;
+    overflow: hidden;
+    aspect-ratio: 468 / 402;
+  }
+
+  .card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .card__price {
+    position: absolute;
+    top: 27px;
+    right: 24px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    border: 1px solid var(--color-pop);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-size: 18px;
+    color: var(--color-pop);
+    text-transform: uppercase;
+    transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+  }
+
+  .card__details {
+    padding: 20px 24px 24px;
+  }
+
+  .card__name {
+    font-family: var(--font-display);
+    font-size: clamp(22px, 1.94vw, 28px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    line-height: 1.2;
+  }
+
+  .card__desc {
+    margin-top: 4px;
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.25vw, 18px);
+    color: var(--color-pop);
+  }
+
+  @media (max-width: 480px) {
+    .card__price {
+      width: 64px;
+      height: 64px;
+      font-size: 15px;
+      top: 16px;
+      right: 16px;
+    }
+  }
+</style>

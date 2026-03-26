@@ -1,0 +1,145 @@
+---
+import AgentationToolbar from '../components/AgentationToolbar';
+
+interface Props {
+  title?: string;
+  description?: string;
+  canonicalURL?: string;
+  ogImage?: string;
+}
+
+const {
+  title = 'Other Milk — Locally Sourced Small-Batch Pecan Milk',
+  description = 'No gums, no fillers, no oils — just The Good Stuff. Subscribe for weekly pecan milk delivery in Chattanooga.',
+  canonicalURL = Astro.url.href,
+  ogImage = '/images/hero.jpg',
+} = Astro.props;
+
+const siteURL = Astro.site?.origin ?? Astro.url.origin;
+const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}`;
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "LocalBusiness",
+      "name": "Other Milk",
+      "description": description,
+      "url": siteURL,
+      "logo": `${siteURL}/images/logomark.svg`,
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Chattanooga",
+        "addressRegion": "TN",
+        "addressCountry": "US"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Pecan Milk",
+      "image": `${siteURL}/images/pecan-milk.jpg`,
+      "description": "Pecans, filtered water, cacao, vanilla, salt",
+      "brand": { "@type": "Brand", "name": "Other Milk" },
+      "offers": {
+        "@type": "Offer",
+        "price": "14.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    },
+    {
+      "@type": "Product",
+      "name": "Chocolate Pecan Milk",
+      "image": `${siteURL}/images/chocolate-pecan-milk.jpg`,
+      "description": "Pecans, filtered water, cacao, vanilla, salt",
+      "brand": { "@type": "Brand", "name": "Other Milk" },
+      "offers": {
+        "@type": "Offer",
+        "price": "14.00",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+  ]
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FFF9F1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/images/logomark.svg" />
+    <link rel="canonical" href={canonicalURL} />
+    <title>{title}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={absoluteOgImage} />
+    <meta property="og:url" content={canonicalURL} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={absoluteOgImage} />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
+    <!-- Preload display font -->
+    <link
+      rel="preload"
+      href="/fonts/KranaFat-B.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/GTWalsheim-Bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+  </head>
+  <body>
+    <slot />
+    <AgentationToolbar client:only="react" />
+  </body>
+</html>
+
+<style is:global>
+  /* ── @font-face ──
+     Replace these src paths with your actual licensed font files.
+     Drop .woff2 files into public/fonts/                        */
+
+  @font-face {
+    font-family: 'Krana Fat';
+    src: url('/fonts/KranaFat-B.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim';
+    src: url('/fonts/GTWalsheim-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Walsheim';
+    src: url('/fonts/GTWalsheim-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+</style>

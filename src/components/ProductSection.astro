@@ -1,0 +1,82 @@
+---
+import ProductCard from './ProductCard.astro';
+---
+
+<section class="products" aria-label="Our products">
+  <div class="products__layout">
+    <div class="products__card products__card--left">
+      <ProductCard
+        name="Pecan Milk"
+        price="$14.00"
+        description="Pecans, filtered water, cacao, vanilla, salt"
+        image="/images/pecan-milk.jpg"
+        rotation={-1.62}
+      />
+    </div>
+    <div class="products__card products__card--right">
+      <ProductCard
+        name="Chocolate Pecan Milk"
+        price="$14.00"
+        description="Pecans, filtered water, cacao, vanilla, salt"
+        image="/images/chocolate-pecan-milk.jpg"
+        rotation={1.8}
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .products {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 40px 20px;
+    overflow: visible;
+  }
+
+  @media (min-width: 769px) {
+    .products {
+      margin-top: -60px;
+    }
+  }
+
+  /* Figma: section is 1439px wide.
+     Left card: x=254, w=482 (card inner 468px)
+     Right card: x=717, w=484 (card inner 468px), top offset ~132px */
+  .products__layout {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .products__card--left {
+    justify-self: end;
+    margin-right: -17.5px;
+  }
+
+  .products__card--right {
+    justify-self: start;
+    margin-left: -17.5px;
+    margin-top: clamp(80px, 9.17vw, 132px);
+  }
+
+  @media (max-width: 768px) {
+    .products__layout {
+      grid-template-columns: 1fr;
+      gap: 40px;
+      justify-items: center;
+    }
+
+    .products__card--left,
+    .products__card--right {
+      margin-left: 0;
+      margin-right: 0;
+      justify-self: center;
+    }
+
+    .products__card--right {
+      margin-top: 0;
+    }
+  }
+</style>

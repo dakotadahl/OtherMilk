@@ -1,0 +1,96 @@
+---
+import SubscribeBtn from './SubscribeBtn.astro';
+---
+
+<section class="headline">
+  <h1 class="headline__title">
+    Locally sourced<br />small-batch<br />pecan milk.
+  </h1>
+
+  <div class="headline__content">
+    <div class="headline__body">
+      <p class="headline__text">
+        No gums, no fillers, no oils&mdash;just The Good Stuff. Subscribe for
+        weekly milk, or find us at a Chattanooga stockist or farmer&rsquo;s market.
+      </p>
+      <div class="headline__cta">
+        <SubscribeBtn />
+        <span class="headline__aside">Cancel or pause any time.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .headline {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(24px, 3.47vw, 50px) 20px 0;
+  }
+
+  .headline__title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 4.17vw, 60px);
+    line-height: 1.2;
+    text-transform: uppercase;
+    color: var(--color-pop);
+    text-align: center;
+    max-width: 709px;
+    margin: 0 auto;
+  }
+
+  .headline__content {
+    display: flex;
+    justify-content: flex-end;
+    padding-right: calc(270 / 1440 * 100%);
+    margin-top: clamp(24px, 3.13vw, 45px);
+  }
+
+  .headline__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+    width: 358px;
+    max-width: 100%;
+  }
+
+  .headline__text {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.5;
+    color: var(--color-dark);
+  }
+
+  .headline__cta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .headline__aside {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-dark);
+    opacity: 0.5;
+  }
+
+  @media (max-width: 768px) {
+    .headline__content {
+      justify-content: center;
+      padding-right: 0;
+    }
+
+    .headline__body {
+      width: 100%;
+      max-width: 358px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .headline__cta {
+      flex-direction: column;
+      gap: 12px;
+    }
+  }
+</style>

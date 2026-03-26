@@ -1,0 +1,101 @@
+---
+import SubscribeBtn from './SubscribeBtn.astro';
+---
+
+<header class="nav">
+  <a href="/" class="nav__logo" aria-label="Other Milk home">
+    <img src="/images/logomark.svg" alt="Other Milk" width="164" height="78" decoding="async" />
+  </a>
+
+  <nav class="nav__links">
+    <a href="#cart" class="nav__cart">Cart (0)</a>
+    <SubscribeBtn />
+  </nav>
+</header>
+
+<style>
+  .nav {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(24px, 3.47vw, 50px) 20px 0;
+  }
+
+  .nav__logo {
+    display: block;
+  }
+
+  .nav__logo img {
+    width: clamp(100px, 11.39vw, 164px);
+    height: auto;
+    aspect-ratio: 164 / 78;
+    object-fit: contain;
+  }
+
+  .nav__links {
+    position: absolute;
+    right: 20px;
+    top: clamp(24px, 3.47vw, 50px);
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2.78vw, 40px);
+  }
+
+  .nav__cart {
+    position: relative;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(11px, 0.97vw, 14px);
+    letter-spacing: clamp(2px, 0.29vw, 4.2px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    font-feature-settings: 'dlig';
+  }
+
+  .nav__cart::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .nav__cart:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  @media (min-width: 1441px) {
+    .nav {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .nav__links {
+      right: 122px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .nav {
+      justify-content: space-between;
+    }
+
+    .nav__links {
+      position: static;
+    }
+
+    .nav__cart {
+      display: none;
+    }
+  }
+</style>

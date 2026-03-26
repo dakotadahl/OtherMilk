@@ -1,0 +1,51 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Hero from '../components/Hero.astro';
+import Headline from '../components/Headline.astro';
+import ProductSection from '../components/ProductSection.astro';
+import LifestyleBanner from '../components/LifestyleBanner.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Base>
+  <Nav />
+  <Hero />
+  <Headline />
+  <ProductSection />
+  <LifestyleBanner />
+  <Footer />
+</Base>
+
+<style is:global>
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  const targets = document.querySelectorAll('.products, .banner, .footer__wordmark');
+  targets.forEach((el) => el.classList.add('scroll-reveal'));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+</script>
