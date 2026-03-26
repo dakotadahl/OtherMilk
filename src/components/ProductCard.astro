@@ -8,12 +8,16 @@ interface Props {
 }
 
 const { name, price, description, image, rotation = 0 } = Astro.props;
+const webpImage = image.replace(/\.jpg$/, '.webp');
 ---
 
 <article class="card" style={`--card-rotation: ${rotation}deg`}>
-  <a href="#" class="card__link">
+  <a href="#" class="card__link" aria-label={`View ${name}`}>
     <div class="card__image">
-      <img src={image} alt={name} width="468" height="402" loading="lazy" decoding="async" />
+      <picture>
+        <source srcset={webpImage} type="image/webp" />
+        <img src={image} alt={name} width="468" height="402" loading="lazy" decoding="async" />
+      </picture>
     </div>
     <div class="card__price">
       <span>{price}</span>

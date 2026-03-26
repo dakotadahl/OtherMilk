@@ -1,0 +1,15 @@
+[
+  {
+    "path": "/",
+    "timings": [
+      { "metric": "first-contentful-paint", "budget": 2500 },
+      { "metric": "interactive", "budget": 5000 },
+      { "metric": "total-blocking-time", "budget": 200 }
+    ],
+    "resourceSizes": [
+      { "resourceType": "total", "budget": 500 },
+      { "resourceType": "image", "budget": 300 },
+      { "resourceType": "script", "budget": 100 }
+    ]
+  }
+]
