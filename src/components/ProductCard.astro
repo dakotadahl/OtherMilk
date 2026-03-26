@@ -11,16 +11,18 @@ const { name, price, description, image, rotation = 0 } = Astro.props;
 ---
 
 <article class="card" style={`--card-rotation: ${rotation}deg`}>
-  <div class="card__image">
-    <img src={image} alt={name} width="468" height="402" loading="lazy" decoding="async" />
-  </div>
-  <div class="card__price">
-    <span>{price}</span>
-  </div>
-  <div class="card__details">
-    <h3 class="card__name">{name}</h3>
-    <p class="card__desc">{description}</p>
-  </div>
+  <a href="#" class="card__link">
+    <div class="card__image">
+      <img src={image} alt={name} width="468" height="402" loading="lazy" decoding="async" />
+    </div>
+    <div class="card__price">
+      <span>{price}</span>
+    </div>
+    <div class="card__details">
+      <h2 class="card__name">{name}</h2>
+      <p class="card__desc">{description}</p>
+    </div>
+  </a>
 </article>
 
 <style>
@@ -37,7 +39,23 @@ const { name, price, description, image, rotation = 0 } = Astro.props;
     transition: box-shadow 0.4s ease;
   }
 
-  .card:hover {
+  .card__link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .card__link:focus-visible {
+    outline: none;
+  }
+
+  .card:has(.card__link:focus-visible) {
+    outline: 2px solid var(--color-pop);
+    outline-offset: 4px;
+  }
+
+  .card:hover,
+  .card:has(.card__link:focus-visible) {
     z-index: 2;
     box-shadow:
       -2px 4px 6px rgba(0, 0, 0, 0.08),
@@ -45,7 +63,8 @@ const { name, price, description, image, rotation = 0 } = Astro.props;
       -1px 2px 3px rgba(0, 0, 0, 0.1);
   }
 
-  .card:hover .card__price {
+  .card:hover .card__price,
+  .card:has(.card__link:focus-visible) .card__price {
     background: var(--color-pop);
     color: var(--color-white);
     border-color: var(--color-white);

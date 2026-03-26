@@ -95,20 +95,21 @@ const structuredData = {
     <!-- Preload display font -->
     <link
       rel="preload"
-      href="/fonts/KranaFat-B.woff2"
+      href="/fonts/Krana Fat B.woff"
       as="font"
-      type="font/woff2"
+      type="font/woff"
       crossorigin
     />
     <link
       rel="preload"
-      href="/fonts/GTWalsheim-Bold.woff2"
+      href="/fonts/GT-Walsheim-Bold.otf"
       as="font"
-      type="font/woff2"
+      type="font/otf"
       crossorigin
     />
   </head>
   <body>
+    <a href="#main" class="skip-link">Skip to content</a>
     <slot />
     <AgentationToolbar client:only="react" />
   </body>

@@ -11,10 +11,12 @@ import '../styles/global.css';
 
 <Base>
   <Nav />
-  <Hero />
-  <Headline />
-  <ProductSection />
-  <LifestyleBanner />
+  <main id="main">
+    <Hero />
+    <Headline />
+    <ProductSection />
+    <LifestyleBanner />
+  </main>
   <Footer />
 </Base>
 
@@ -28,6 +30,14 @@ import '../styles/global.css';
   .scroll-reveal.visible {
     opacity: 1;
     transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
   }
 </style>
 

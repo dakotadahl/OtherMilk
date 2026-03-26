@@ -33,7 +33,12 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
@@ -54,6 +59,18 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible {
+  outline: 2px solid var(--color-pop);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid var(--color-pop);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 button {
   font: inherit;
   cursor: pointer;
@@ -64,8 +81,9 @@ button {
 /* ── CSS Containment ── */
 body > section,
 body > header,
+body > main,
 body > footer {
-  contain: layout style paint;
+  contain: layout style;
 }
 
 /* ── Utility ── */
@@ -79,6 +97,28 @@ body > footer {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ── Skip Link ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 16px;
+  z-index: 100;
+  padding: 8px 16px;
+  background: var(--color-pop);
+  color: var(--color-white);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 16px;
+  outline: 2px solid var(--color-dark);
+  outline-offset: 2px;
 }
 
 /* ── Print ── */

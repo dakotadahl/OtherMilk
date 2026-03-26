@@ -82,6 +82,12 @@
     object-fit: cover;
   }
 
+  @media (prefers-reduced-motion: reduce) {
+    .hero__image-wrap {
+      animation: none;
+    }
+  }
+
   @media (max-width: 768px) {
     .hero__image-wrap {
       rotate: 0deg;
