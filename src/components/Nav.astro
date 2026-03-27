@@ -8,8 +8,8 @@ import SubscribeBtn from './SubscribeBtn.astro';
   </a>
 
   <nav class="nav__links">
-    <a href="#cart" class="nav__cart">Cart (0)</a>
-    <SubscribeBtn />
+    <a href="#cart" class="nav__cart subbly-cart">Cart (<span class="subbly-cart-product-count">0</span>)</a>
+    <SubscribeBtn productId={417143} />
   </nav>
 </header>
 
@@ -20,7 +20,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     display: flex;
     justify-content: center;
     align-items: flex-start;
-    max-width: var(--page-max);
+    max-width: calc(var(--page-max) - 120px);
     margin: 0 auto;
     padding: clamp(24px, 3.47vw, 50px) 20px 0;
   }

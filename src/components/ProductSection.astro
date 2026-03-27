@@ -54,25 +54,11 @@ import ProductCard from './ProductCard.astro';
 
   .products__card--left {
     justify-self: end;
-    margin-right: -17.5px;
-    transition: transform 0.4s 0.25s ease;
-  }
-
-  .products__card--left:hover {
-    transform: translateX(-17.5px);
-    transition-delay: 0s;
   }
 
   .products__card--right {
     justify-self: start;
-    margin-left: -17.5px;
     margin-top: clamp(80px, 9.17vw, 132px);
-    transition: transform 0.4s 0.25s ease;
-  }
-
-  .products__card--right:hover {
-    transform: translateX(17.5px);
-    transition-delay: 0s;
   }
 
   @media (max-width: 768px) {

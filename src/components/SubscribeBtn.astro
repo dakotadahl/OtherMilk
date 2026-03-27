@@ -1,12 +1,21 @@
 ---
 interface Props {
   class?: string;
+  productId?: number;
+  label?: string;
 }
 
-const { class: className } = Astro.props;
+const { class: className, productId, label = 'Subscribe' } = Astro.props;
+const href = productId
+  ? `https://www.subbly.co/checkout/buy/${productId}`
+  : '#cart';
+const cartToggle = !productId;
 ---
 
-<a href="#subscribe" class:list={['btn', className]}>Subscribe</a>
+<a
+  href={href}
+  class:list={['btn', className, { 'subbly-cart': cartToggle }]}
+>{label}</a>
 
 <style>
   .btn {

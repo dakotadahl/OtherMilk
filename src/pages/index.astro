@@ -58,4 +58,27 @@ import '../styles/global.css';
   );
 
   targets.forEach((el) => observer.observe(el));
+
+  // Parallax for hero and banner images
+  const parallaxTargets = document.querySelectorAll<HTMLImageElement>(
+    '.hero__image-wrap img, .banner__image-wrap img'
+  );
+
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    function updateParallax() {
+      for (const img of parallaxTargets) {
+        const wrap = img.closest('.hero__image-wrap, .banner__image-wrap') as HTMLElement;
+        if (!wrap) continue;
+        const rect = wrap.getBoundingClientRect();
+        const viewH = window.innerHeight;
+        // 0 when top enters viewport, 1 when bottom leaves
+        const progress = (viewH - rect.top) / (viewH + rect.height);
+        // Shift image from 0% to -20% of its extra height
+        const offset = Math.max(0, Math.min(1, progress)) * -20;
+        img.style.transform = `translateY(${offset}%)`;
+      }
+      requestAnimationFrame(updateParallax);
+    }
+    requestAnimationFrame(updateParallax);
+  }
 </script>

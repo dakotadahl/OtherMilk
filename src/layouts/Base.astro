@@ -111,6 +111,18 @@ const structuredData = {
   <body>
     <a href="#main" class="skip-link">Skip to content</a>
     <slot />
+    <script is:inline>
+      window.subblyConfig = {
+        apiKey: 'b5808932-aff4-4691-bc1f-9671ddfa1cb6',
+        settings: {
+          interceptProductLinks: true,
+          cartCounterEl: '.subbly-cart-product-count',
+          cartToggleEl: '.subbly-cart',
+          cartButton: false
+        }
+      }
+    </script>
+    <script type="module" src="https://assets.subbly.co/cart/cart-widget.js"></script>
     {import.meta.env.DEV && <AgentationToolbar client:only="react" />}
   </body>
 </html>

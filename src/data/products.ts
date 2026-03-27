@@ -22,6 +22,7 @@ export interface Product {
   slug: string;
   name: string;
   price: string;
+  subblyProductId: number;
   tagline: string;
   description: string;
   ingredients: string[];
@@ -36,6 +37,7 @@ export const products: Product[] = [
     slug: 'pecan-milk',
     name: 'Pecan Milk',
     price: '$14.00',
+    subblyProductId: 416895,
     tagline: 'The original. The classic. The Good Stuff.',
     description:
       "Our flagship — silky, naturally sweet pecan milk made fresh weekly in Chattanooga. Four ingredients, zero compromises. Delicious on its own, in your coffee, or anywhere you'd use milk.",
@@ -99,6 +101,7 @@ export const products: Product[] = [
     slug: 'chocolate-pecan-milk',
     name: 'Chocolate Pecan Milk',
     price: '$14.00',
+    subblyProductId: 416902,
     tagline: 'Dessert-level good. Breakfast-level justified.',
     description:
       'Everything you love about our pecan milk, plus single-origin cacao. Rich, creamy, and dangerously drinkable — like a milkshake that\'s actually good for you.',
