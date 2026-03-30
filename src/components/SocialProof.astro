@@ -14,7 +14,7 @@ const { reviews } = Astro.props;
       <svg class="proof__star-icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
       </svg>
-      <h2 class="proof__title">Don't take our<br />word for it.</h2>
+      <h2 class="proof__title">Don&rsquo;t take our<br />word for it.</h2>
       <svg class="proof__star-icon" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
         <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
       </svg>
@@ -59,8 +59,7 @@ const { reviews } = Astro.props;
   .proof__header {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: clamp(16px, 2.08vw, 30px);
+    justify-content: space-between;
     margin-bottom: clamp(40px, 4.17vw, 60px);
   }
 
@@ -144,7 +143,7 @@ const { reviews } = Astro.props;
   .review__location {
     font-family: var(--font-body);
     font-size: 13px;
-    color: #595959;
+    color: var(--color-muted);
   }
 
   @media (max-width: 768px) {

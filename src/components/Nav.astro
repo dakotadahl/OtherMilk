@@ -4,11 +4,12 @@ import SubscribeBtn from './SubscribeBtn.astro';
 
 <header class="nav">
   <a href="/" class="nav__logo" aria-label="Other Milk home">
-    <img src="/images/logomark.svg" alt="Other Milk" width="164" height="78" decoding="async" />
+    <img class="nav__logo-full" src="/images/logomark.svg" alt="Other Milk" width="164" height="78" decoding="async" />
+    <img class="nav__logo-sm" src="/images/Logomark_sm.svg" alt="Other Milk" width="165" height="44" decoding="async" />
   </a>
 
   <nav class="nav__links">
-    <a href="#cart" class="nav__cart subbly-cart">Cart (<span class="subbly-cart-product-count">0</span>)</a>
+    <a href="#cart" class="nav__cart subbly-cart"><span class="nav__cart-label">Cart</span><span class="nav__cart-count subbly-cart-product-count"></span></a>
     <SubscribeBtn productId={417143} />
   </nav>
 </header>
@@ -29,11 +30,17 @@ import SubscribeBtn from './SubscribeBtn.astro';
     display: block;
   }
 
-  .nav__logo img {
+  .nav__logo-full {
     width: clamp(100px, 11.39vw, 164px);
     height: auto;
     aspect-ratio: 164 / 78;
     object-fit: contain;
+  }
+
+  .nav__logo-sm {
+    display: none;
+    width: 80px;
+    height: auto;
   }
 
   .nav__links {
@@ -47,16 +54,53 @@ import SubscribeBtn from './SubscribeBtn.astro';
 
   .nav__cart {
     position: relative;
+    display: inline-flex;
+    align-items: center;
     font-family: var(--font-body);
     font-weight: 700;
-    font-size: clamp(11px, 0.97vw, 14px);
-    letter-spacing: clamp(2px, 0.29vw, 4.2px);
+    font-size: 14px;
+    letter-spacing: 4.2px;
     text-transform: uppercase;
     color: var(--color-pop-accessible);
     font-feature-settings: 'dlig';
   }
 
   .nav__cart::after {
+    display: none !important;
+  }
+
+  .nav__cart-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding-right: 1px;
+    padding-top: 1.5px;
+    margin-left: 6px;
+    background: var(--color-pop);
+    color: var(--color-white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0;
+    border-radius: 100px;
+    vertical-align: middle;
+    transition: transform 0.2s ease;
+  }
+
+  .nav__cart:hover .nav__cart-count {
+    transform: scale(1.15);
+  }
+
+  .nav__cart-count:empty {
+    display: none;
+  }
+
+  .nav__cart-label {
+    position: relative;
+  }
+
+  .nav__cart-label::after {
     content: '';
     position: absolute;
     left: 0;
@@ -69,7 +113,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     transition: transform 0.3s ease;
   }
 
-  .nav__cart:hover::after {
+  .nav__cart:hover .nav__cart-label::after {
     transform: scaleX(1);
     transform-origin: left;
   }
@@ -85,9 +129,10 @@ import SubscribeBtn from './SubscribeBtn.astro';
     }
   }
 
-  @media (max-width: 480px) {
+  @media (max-width: 768px) {
     .nav {
       justify-content: space-between;
+      align-items: center;
     }
 
     .nav__links {
@@ -96,6 +141,14 @@ import SubscribeBtn from './SubscribeBtn.astro';
 
     .nav__cart {
       display: none;
+    }
+
+    .nav__logo-full {
+      display: none;
+    }
+
+    .nav__logo-sm {
+      display: block;
     }
   }
 </style>

@@ -25,7 +25,7 @@ const product = getProductBySlug(slug!)!;
   <Nav />
   <main id="main">
     <ProductHero product={product} />
-    <NutritionTable nutrition={product.nutrition} />
+    <!-- <NutritionTable nutrition={product.nutrition} /> -->
     <RecipesSection recipes={product.recipes} productName={product.name} />
     <SocialProof reviews={product.reviews} />
   </main>

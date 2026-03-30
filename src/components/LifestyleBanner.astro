@@ -68,12 +68,27 @@
     text-align: center;
   }
 
+  @media (max-width: 768px) {
+    .banner__image-wrap {
+      aspect-ratio: 3 / 4;
+    }
+
+    .banner__image-wrap img {
+      height: 140%;
+    }
+  }
+
   @media (max-width: 480px) {
     .banner__overlay {
       flex-direction: column;
-      justify-content: center;
-      gap: 12px;
-      padding: 16px;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0;
+      padding: clamp(24px, 6vw, 40px) 16px;
+    }
+
+    .banner__text {
+      font-size: clamp(28px, 7vw, 36px);
     }
   }
 </style>

@@ -15,7 +15,7 @@
     <a href="/find-us">Find us</a>
     <a href="/login">Log in</a>
     <a href="https://www.subbly.co/checkout/buy/417143">Subscribe</a>
-    <a href="#cart" class="subbly-cart">Cart (<span class="subbly-cart-product-count">0</span>)</a>
+    <a href="#cart" class="subbly-cart">Cart</a>
   </nav>
 </footer>
 
@@ -81,6 +81,15 @@
 
   .footer__links a:hover {
     opacity: 0.7;
+  }
+
+  /* Override Subbly widget styles on cart link */
+  .footer__links .subbly-cart {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(12px, 1.11vw, 16px);
+    letter-spacing: clamp(2px, 0.33vw, 4.8px);
+    text-transform: uppercase;
   }
 
   @media (max-width: 480px) {

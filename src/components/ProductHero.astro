@@ -24,9 +24,6 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
             fetchpriority="high"
           />
         </picture>
-        <div class="phero__badge">
-          <span>{product.price}</span>
-        </div>
       </div>
     </div>
 
@@ -34,8 +31,13 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
       <p class="phero__back">
         <a href="/" class="phero__back-link">&larr; Back to all products</a>
       </p>
-      <h1 class="phero__name">{product.name}</h1>
-      <p class="phero__tagline">{product.tagline}</p>
+      <div class="phero__title-row">
+        <h1 class="phero__name">{product.name}</h1>
+        <div class="phero__badge-float">
+          <span>{product.price}</span>
+        </div>
+      </div>
+      <p class="phero__tagline">{product.tagline.toLowerCase()}</p>
       <p class="phero__desc">{product.description}</p>
 
       <div class="phero__ingredients">
@@ -47,8 +49,9 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
 
       <div class="phero__actions">
         <SubscribeBtn productId={product.subblyProductId} label="Add to Cart" />
-        <span class="phero__aside">Free local delivery every week.</span>
+        <span class="phero__aside">Free local pick-up Wed-Sat.</span>
       </div>
+
     </div>
   </div>
 </section>
@@ -71,6 +74,7 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
 
   .phero__image-col {
     position: relative;
+    padding-top: 20px;
   }
 
   .phero__frame {
@@ -96,26 +100,31 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
     object-fit: cover;
   }
 
-  .phero__badge {
-    position: absolute;
-    top: 24px;
-    right: 24px;
+  .phero__title-row {
+    display: flex;
+    align-items: center;
+    gap: clamp(16px, 1.67vw, 24px);
+  }
+
+  .phero__badge-float {
+    flex-shrink: 0;
     width: 90px;
     height: 90px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--color-pop-accessible);
-    color: var(--color-white);
-    border: 2px solid var(--color-white);
+    background: transparent;
+    color: var(--color-pop);
+    border: 2px solid var(--color-pop);
     border-radius: 100px;
     font-family: var(--font-body);
     font-weight: 700;
     font-size: 20px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
   }
 
   .phero__text-col {
+    display: flex;
+    flex-direction: column;
     padding-top: clamp(0px, 2.08vw, 30px);
   }
 
@@ -147,11 +156,12 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
 
   .phero__tagline {
     margin-top: clamp(8px, 0.83vw, 12px);
-    font-family: var(--font-body);
-    font-style: oblique;
-    font-size: clamp(16px, 1.39vw, 20px);
-    color: var(--color-dark);
+    font-family: 'Melany Lane', cursive;
+    font-style: normal;
+    font-size: clamp(24.2px, 2.02vw, 29px);
+    color: var(--color-pop);
     line-height: 1.4;
+    text-transform: lowercase;
   }
 
   .phero__desc {
@@ -160,6 +170,8 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
     font-size: clamp(15px, 1.11vw, 16px);
     line-height: 1.6;
     color: var(--color-dark);
+    max-width: 66%;
+    text-wrap: pretty;
   }
 
   .phero__ingredients {
@@ -180,7 +192,7 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
     margin-top: 8px;
     font-family: var(--font-body);
     font-size: clamp(14px, 1.04vw, 15px);
-    color: #595959;
+    color: var(--color-muted);
     letter-spacing: 0.5px;
   }
 
@@ -194,7 +206,7 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
   .phero__aside {
     font-family: var(--font-body);
     font-size: 14px;
-    color: #595959;
+    color: var(--color-muted);
   }
 
   @media (max-width: 768px) {
@@ -211,6 +223,21 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
     .phero__text-col {
       padding-top: 0;
       text-align: center;
+      align-items: center;
+    }
+
+    .phero__title-row {
+      justify-content: center;
+    }
+
+    .phero__desc {
+      max-width: 100%;
+    }
+
+    .phero__badge-float {
+      width: 72px;
+      height: 72px;
+      font-size: 17px;
     }
 
     .phero__back {
@@ -223,13 +250,4 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
     }
   }
 
-  @media (max-width: 480px) {
-    .phero__badge {
-      width: 72px;
-      height: 72px;
-      font-size: 17px;
-      top: 16px;
-      right: 16px;
-    }
-  }
 </style>
