@@ -1,0 +1,261 @@
+---
+import SubscribeBtn from './SubscribeBtn.astro';
+---
+
+<section class="sub-hero" aria-label="Subscribe to Other Milk">
+  <div class="sub-hero__layout">
+
+    <!-- Left: the pitch -->
+    <div class="sub-hero__pitch">
+      <p class="sub-hero__back">
+        <a href="/" class="sub-hero__back-link">&larr; Back home</a>
+      </p>
+      <h1 class="sub-hero__title">Never run&nbsp;out.</h1>
+      <p class="sub-hero__script">make other milk a staple</p>
+      <p class="sub-hero__body">
+        Subscribe and we'll deliver fresh, small-batch pecan milk to your door
+        every week. No commitment, no hassle&mdash;just The Good Stuff, on repeat.
+      </p>
+
+      <div class="sub-hero__actions">
+        <SubscribeBtn productId={417143} label="Start your subscription" />
+        <span class="sub-hero__aside">Cancel or pause anytime.</span>
+      </div>
+    </div>
+
+    <!-- Right: the value cards -->
+    <div class="sub-hero__cards" aria-label="Subscription benefits">
+
+      <div class="sub-hero__card sub-hero__card--save">
+        <span class="sub-hero__card-icon" aria-hidden="true">$</span>
+        <div class="sub-hero__card-text">
+          <h2 class="sub-hero__card-title">Save every&nbsp;week</h2>
+          <p class="sub-hero__card-desc">
+            Subscribers save <strong>10%</strong> on every bottle. That's more
+            milk money for&hellip; more milk.
+          </p>
+        </div>
+      </div>
+
+      <div class="sub-hero__card sub-hero__card--staple">
+        <span class="sub-hero__card-icon" aria-hidden="true">&infin;</span>
+        <div class="sub-hero__card-text">
+          <h2 class="sub-hero__card-title">Always stocked</h2>
+          <p class="sub-hero__card-desc">
+            Fresh bottles arrive weekly so your fridge never goes without.
+            Other Milk becomes a given, not a grocery run.
+          </p>
+        </div>
+      </div>
+
+      <div class="sub-hero__card sub-hero__card--flex">
+        <span class="sub-hero__card-icon" aria-hidden="true">&olarr;</span>
+        <div class="sub-hero__card-text">
+          <h2 class="sub-hero__card-title">Totally flexible</h2>
+          <p class="sub-hero__card-desc">
+            Skip a week, pause for vacation, or cancel for good&mdash;no fees,
+            no guilt, no fine print.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  .sub-hero {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(24px, 3.47vw, 50px) 20px clamp(40px, 4.17vw, 60px);
+  }
+
+  .sub-hero__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(40px, 5.56vw, 80px);
+    align-items: start;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Back link ── */
+  .sub-hero__back {
+    margin-bottom: clamp(16px, 1.67vw, 24px);
+  }
+
+  .sub-hero__back-link {
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--color-pop-accessible);
+    transition: opacity 0.2s;
+  }
+
+  .sub-hero__back-link:hover {
+    opacity: 0.7;
+  }
+
+  /* ── Pitch column ── */
+  .sub-hero__pitch {
+    padding-top: clamp(0px, 2.08vw, 30px);
+  }
+
+  .sub-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4.86vw, 70px);
+    line-height: 1.05;
+    text-transform: uppercase;
+    color: var(--color-pop);
+  }
+
+  .sub-hero__script {
+    margin-top: clamp(8px, 0.83vw, 12px);
+    font-family: 'Melany Lane', cursive;
+    font-size: clamp(24px, 2.08vw, 30px);
+    color: var(--color-pop);
+    line-height: 1.4;
+  }
+
+  .sub-hero__body {
+    margin-top: clamp(16px, 1.39vw, 20px);
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.11vw, 16px);
+    line-height: 1.6;
+    color: var(--color-dark);
+    max-width: 420px;
+    text-wrap: pretty;
+  }
+
+  .sub-hero__actions {
+    margin-top: clamp(28px, 2.22vw, 32px);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .sub-hero__aside {
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--color-muted);
+  }
+
+  /* ── Benefit cards ── */
+  .sub-hero__cards {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding-top: clamp(20px, 3.47vw, 50px);
+  }
+
+  .sub-hero__card {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(16px, 1.39vw, 20px);
+    background: var(--color-white);
+    border: 1px solid var(--color-pop);
+    border-radius: var(--radius-card);
+    padding: clamp(20px, 1.67vw, 24px);
+    box-shadow: var(--shadow-postcard);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+
+  .sub-hero__card:hover {
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.06),
+      0 4px 24px rgba(0, 0, 0, 0.14),
+      -1px 2px 3px rgba(0, 0, 0, 0.08);
+    transform: translateY(-2px);
+  }
+
+  .sub-hero__card--save {
+    rotate: -0.8deg;
+  }
+
+  .sub-hero__card--staple {
+    rotate: 0.5deg;
+  }
+
+  .sub-hero__card--flex {
+    rotate: -0.3deg;
+  }
+
+  .sub-hero__card-icon {
+    flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    color: var(--color-pop);
+    border: 2px solid var(--color-pop);
+    border-radius: 100px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 20px;
+    transition: background 0.25s, color 0.25s;
+  }
+
+  .sub-hero__card:hover .sub-hero__card-icon {
+    background: var(--color-pop);
+    color: var(--color-white);
+  }
+
+  .sub-hero__card-title {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 1.25vw, 18px);
+    text-transform: uppercase;
+    color: var(--color-pop-accessible);
+    letter-spacing: 0.5px;
+    line-height: 1.2;
+  }
+
+  .sub-hero__card-desc {
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.04vw, 15px);
+    line-height: 1.55;
+    color: var(--color-dark);
+  }
+
+  .sub-hero__card-desc strong {
+    color: var(--color-pop-accessible);
+    font-weight: 700;
+  }
+
+  /* ── Mobile ── */
+  @media (max-width: 768px) {
+    .sub-hero__layout {
+      grid-template-columns: 1fr;
+      gap: 36px;
+    }
+
+    .sub-hero__pitch {
+      padding-top: 0;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .sub-hero__back {
+      align-self: flex-start;
+    }
+
+    .sub-hero__body {
+      max-width: 100%;
+    }
+
+    .sub-hero__actions {
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .sub-hero__card {
+      rotate: 0deg;
+    }
+  }
+</style>

@@ -1,0 +1,146 @@
+---
+import SubscribeBtn from './SubscribeBtn.astro';
+---
+
+<section class="how" aria-labelledby="how-heading">
+  <h2 class="how__heading" id="how-heading">How it works</h2>
+
+  <ol class="how__steps">
+    <li class="how__step">
+      <span class="how__number">1</span>
+      <div class="how__step-text">
+        <h3 class="how__step-title">Pick your milk</h3>
+        <p class="how__step-desc">
+          Choose Original, Chocolate, or both. Mix and match to your heart's content.
+        </p>
+      </div>
+    </li>
+    <li class="how__step">
+      <span class="how__number">2</span>
+      <div class="how__step-text">
+        <h3 class="how__step-title">We make it fresh</h3>
+        <p class="how__step-desc">
+          Every batch is made that week in Chattanooga. No shelf-stable nonsense.
+        </p>
+      </div>
+    </li>
+    <li class="how__step">
+      <span class="how__number">3</span>
+      <div class="how__step-text">
+        <h3 class="how__step-title">It shows up</h3>
+        <p class="how__step-desc">
+          Local delivery or pick-up, Wed&ndash;Sat. Cold, fresh, ready for your fridge.
+        </p>
+      </div>
+    </li>
+  </ol>
+
+  <div class="how__cta">
+    <SubscribeBtn productId={417143} label="Get started" />
+  </div>
+</section>
+
+<style>
+  .how {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(40px, 4.17vw, 60px) 20px clamp(60px, 5.56vw, 80px);
+  }
+
+  .how__heading {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.47vw, 50px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    text-align: center;
+    line-height: 1.1;
+  }
+
+  .how__steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.08vw, 30px);
+    max-width: 960px;
+    margin: clamp(32px, 3.47vw, 50px) auto 0;
+    list-style: none;
+  }
+
+  .how__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .how__number {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--color-pop);
+    border-radius: 100px;
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--color-pop);
+    line-height: 1;
+  }
+
+  .how__step-title {
+    font-family: var(--font-display);
+    font-size: clamp(14px, 1.11vw, 16px);
+    text-transform: uppercase;
+    color: var(--color-pop-accessible);
+    letter-spacing: 0.5px;
+  }
+
+  .how__step-desc {
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.04vw, 15px);
+    line-height: 1.55;
+    color: var(--color-dark);
+    max-width: 260px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .how__cta {
+    display: flex;
+    justify-content: center;
+    margin-top: clamp(32px, 2.78vw, 40px);
+  }
+
+  /* ── Divider between hero and this section ── */
+  .how::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--color-pop);
+    margin: 0 auto clamp(32px, 3.47vw, 50px);
+    border-radius: 1px;
+  }
+
+  @media (max-width: 768px) {
+    .how__steps {
+      grid-template-columns: 1fr;
+      gap: 28px;
+      max-width: 320px;
+    }
+
+    .how__step {
+      flex-direction: row;
+      text-align: left;
+      gap: 16px;
+    }
+
+    .how__number {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      font-size: 19px;
+    }
+  }
+</style>
