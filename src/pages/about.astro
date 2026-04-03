@@ -1,0 +1,553 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { pressQuotes } from '../data/press';
+import '../styles/global.css';
+
+const cardRotations = [-1.62, 1.8, -1.2, 1.4];
+---
+
+<Base
+  title="About — Other Milk"
+  description="Meet the team behind Other Milk. Learn about our sourcing, sustainability, and why we make small-batch pecan milk in Chattanooga, TN."
+>
+  <Nav />
+  <main id="main">
+
+    <!-- ── Hero ── -->
+    <section class="about-hero" aria-label="About Other Milk">
+      <div class="about-hero__string">
+        <svg class="about-hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+        </svg>
+        <svg class="about-hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+        </svg>
+      </div>
+
+      <div class="about-hero__image-wrap">
+        <picture>
+          <source srcset="/images/lifestyle.webp" type="image/webp" />
+          <img
+            src="/images/lifestyle.jpg"
+            alt="Other Milk bottles arranged in a crate"
+            width="1318"
+            height="671"
+            decoding="async"
+          />
+        </picture>
+        <div class="about-hero__overlay">
+          <h1 class="about-hero__title">Our Story</h1>
+        </div>
+      </div>
+
+      <div class="about-hero__string">
+        <svg class="about-hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+        </svg>
+        <svg class="about-hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+        </svg>
+      </div>
+    </section>
+
+    <!-- ── Overview / Founder ── -->
+    <section class="about-overview" aria-label="Our story">
+      <div class="about-overview__inner">
+        <h2 class="about-overview__heading">Good milk<br />starts with good people.</h2>
+        <div class="about-overview__body">
+          <p>
+            Other Milk began in a Chattanooga kitchen when our founder,
+            <strong>Elizabeth Bounds</strong>, started blending pecans and filtered water
+            for friends who wanted something better than what was on the shelf.
+            No gums. No fillers. No oils. Just The Good Stuff.
+          </p>
+          <p>
+            What started as a weekend project quickly became a mission: make the
+            best plant milk in the South, using ingredients you can actually
+            pronounce, sourced from people you can actually meet.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tagline ── -->
+    <section class="about-tagline" aria-label="Tagline">
+      <p class="about-tagline__text">raise a glass to something better</p>
+    </section>
+
+    <!-- ── Press ── -->
+    <section class="about-press" aria-label="Press">
+      <h2 class="about-press__heading">In the Press</h2>
+      <p class="about-press__subline">For inquiries, please reach out to press@drinkother.com</p>
+      <div class="about-press__grid">
+        {pressQuotes.map((item, i) => (
+          <blockquote class="about-press__card" style={`--card-rotation: ${cardRotations[i % cardRotations.length]}deg`}>
+            <p class="about-press__quote">&ldquo;{item.quote}&rdquo;</p>
+            <footer class="about-press__source">
+              {item.url ? (
+                <a href={item.url} class="about-press__link" target="_blank" rel="noopener noreferrer">
+                  {item.publication}<span class="sr-only">(opens in new tab)</span>
+                </a>
+              ) : (
+                <span>{item.publication}</span>
+              )}
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </section>
+
+    <!-- ── Sustainability ── -->
+    <section class="about-sustain" aria-label="Sustainability">
+      <div class="about-sustain__inner">
+        <h2 class="about-sustain__heading">Sustainability</h2>
+        <div class="about-sustain__body">
+          <p>
+            Pecan trees are native to the Southeast and thrive without heavy
+            irrigation&mdash;making pecans one of the most water-efficient nut crops
+            on the planet. By sourcing locally, we cut transportation emissions
+            and keep our footprint small.
+          </p>
+          <ul class="about-sustain__list">
+            <li><strong>Glass bottles</strong> &mdash; reusable and returnable through our subscription program.</li>
+            <li><strong>Zero-waste pulp</strong> &mdash; leftover pecan pulp goes to local bakeries and compost programs.</li>
+            <li><strong>Short supply chain</strong> &mdash; farm to bottle in under 100 miles.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Sourcing ── -->
+    <section class="about-sourcing" aria-label="Sourcing">
+      <div class="about-sourcing__inner">
+        <div class="about-sourcing__text">
+          <h2 class="about-sourcing__heading">Where It<br />Comes From</h2>
+          <p>
+            Every batch of Other Milk starts with pecans from a family farm in
+            Northern Alabama. We visit our growers, know their names, and
+            taste the harvest before it ever hits our kitchen.
+          </p>
+          <p>
+            Filtered water. Pecans. A pinch of salt. That&rsquo;s the whole list.
+            We believe good staples are about quality, not complexity.
+          </p>
+        </div>
+        <div class="about-sourcing__image-wrap">
+          <picture>
+            <source srcset="/images/sourcing.webp" type="image/webp" />
+            <img
+              src="/images/sourcing.jpg"
+              alt="Pecans in a wooden bowl at a local farm"
+              width="600"
+              height="500"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+      </div>
+    </section>
+
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  /* ── About Hero ── */
+  .about-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 2rem clamp(20px, 4.24vw, 61px) 0;
+  }
+
+  .about-hero__string {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .about-hero__x {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .about-hero__image-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 1318px;
+    margin: 0 auto;
+    border-radius: var(--radius-banner);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    overflow: hidden;
+    box-shadow: var(--shadow-postcard);
+    aspect-ratio: 1318 / 600;
+  }
+
+  .about-hero__image-wrap img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-hero__overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(33, 33, 33, 0.3);
+  }
+
+  .about-hero__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5.56vw, 80px);
+    text-transform: uppercase;
+    color: var(--color-white);
+    line-height: 1;
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    .about-hero__x {
+      display: none;
+    }
+
+    .about-hero__image-wrap {
+      aspect-ratio: 3 / 2;
+    }
+  }
+
+  /* ── Tagline ── */
+  .about-tagline {
+    min-height: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4.24vw, 61px);
+  }
+
+  .about-tagline__text {
+    font-family: 'Melany Lane', cursive;
+    font-size: clamp(28px, 3.47vw, 50px);
+    color: var(--color-dark);
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  /* ── Overview / Founder ── */
+  .about-overview {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(60px, 6.94vw, 100px) clamp(20px, 4.24vw, 61px);
+  }
+
+  .about-overview__inner {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 4.17vw, 60px);
+    align-items: start;
+  }
+
+  .about-overview__heading {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.47vw, 50px);
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: var(--color-pop);
+  }
+
+  .about-overview__body {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-overview__body p {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    color: var(--color-dark);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 768px) {
+    .about-overview__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .about-overview__heading {
+      text-align: center;
+    }
+  }
+
+  /* ── Press ── */
+  .about-press {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(40px, 5.56vw, 80px) clamp(20px, 4.24vw, 61px);
+  }
+
+  .about-press__heading {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.78vw, 40px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .about-press__subline {
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.04vw, 15px);
+    color: var(--color-muted);
+    text-align: center;
+    margin-bottom: clamp(32px, 3.47vw, 50px);
+  }
+
+  .about-press__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.08vw, 30px);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .about-press__card {
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    padding: clamp(24px, 2.08vw, 30px);
+    box-shadow: var(--shadow-postcard);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    rotate: var(--card-rotation, 0deg);
+    transition: box-shadow 0.4s ease;
+  }
+
+  .about-press__card:hover {
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .about-press__quote {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.5;
+    color: var(--color-dark);
+    text-wrap: pretty;
+  }
+
+  .about-press__source,
+  .about-press__source span,
+  .about-press__link {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(11px, 0.83vw, 13px);
+    letter-spacing: clamp(1.5px, 0.21vw, 3px);
+    text-transform: uppercase;
+    color: var(--color-pop-accessible);
+  }
+
+  .about-press__link {
+    transition: opacity 0.2s;
+  }
+
+  .about-press__link:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 768px) {
+    .about-press__grid {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+  }
+
+  /* ── Sustainability ── */
+  .about-sustain {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(60px, 6.94vw, 100px) clamp(20px, 4.24vw, 61px);
+  }
+
+  .about-sustain__inner {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .about-sustain__heading {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.47vw, 50px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    margin-bottom: clamp(24px, 2.08vw, 30px);
+  }
+
+  .about-sustain__body {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .about-sustain__body p {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    color: var(--color-dark);
+    text-wrap: pretty;
+  }
+
+  .about-sustain__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    text-align: left;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .about-sustain__list li {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    color: var(--color-dark);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .about-sustain__list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0.6em;
+    width: 8px;
+    height: 8px;
+    background: var(--color-pop);
+    border-radius: 50%;
+  }
+
+  /* ── Sourcing ── */
+  .about-sourcing {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(40px, 5.56vw, 80px) clamp(20px, 4.24vw, 61px) clamp(60px, 6.94vw, 100px);
+  }
+
+  .about-sourcing__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 4.17vw, 60px);
+    align-items: center;
+  }
+
+  .about-sourcing__heading {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.47vw, 50px);
+    line-height: 1.15;
+    text-transform: uppercase;
+    color: var(--color-pop);
+    margin-bottom: clamp(16px, 1.39vw, 20px);
+  }
+
+  .about-sourcing__text {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-sourcing__text p {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    color: var(--color-dark);
+    text-wrap: pretty;
+  }
+
+  .about-sourcing__image-wrap {
+    border-radius: var(--radius-card);
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+    mask-image: radial-gradient(white, black);
+    overflow: hidden;
+    box-shadow: var(--shadow-postcard);
+  }
+
+  .about-sourcing__image-wrap img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .about-sourcing__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .about-sourcing__image-wrap {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+  }
+</style>
+
+<style is:global>
+  .scroll-reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .scroll-reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  const targets = document.querySelectorAll('.about-press, .about-sustain, .about-sourcing');
+  targets.forEach((el) => el.classList.add('scroll-reveal'));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+</script>

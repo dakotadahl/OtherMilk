@@ -1,166 +1,154 @@
 ---
-interface PressQuote {
-  quote: string;
-  publication: string;
-  url?: string;
-}
-
-const quotes: PressQuote[] = [
-  {
-    quote: "The best plant milk we\u2019ve ever tasted\u2009\u2014\u2009and it\u2019s made right here in Chattanooga.",
-    publication: 'Chattanooga Times Free Press',
-    url: 'https://www.timesfreepress.com',
-  },
-  {
-    quote: 'Other Milk is proof that less is more. Four ingredients, zero compromises.',
-    publication: 'Nooga Today',
-  },
-  {
-    quote: 'A small-batch pecan milk that punches way above its weight.',
-    publication: 'Southern Living',
-    url: 'https://www.southernliving.com',
-  },
-];
+import { pressQuotes as quotes } from '../data/press';
 ---
 
 <section class="press" aria-label="Press quotes">
-  <div class="press__inner" aria-live="polite" aria-atomic="true">
-    {quotes.map((item, i) => (
-      <blockquote
-        class:list={['press__quote', { 'press__quote--active': i === 0 }]}
-        data-index={i}
-        aria-hidden={i !== 0 ? 'true' : undefined}
-      >
-        <p class="press__text">&ldquo;{item.quote}&rdquo;</p>
-        {item.url ? (
-          <footer class="press__pub">
-            <a
-              href={item.url}
-              class="press__link"
-              target="_blank"
-              rel="noopener noreferrer"
-              tabindex={i !== 0 ? -1 : undefined}
-            >
-              {item.publication}
-              <span class="sr-only">(opens in new tab)</span>
-            </a>
-          </footer>
-        ) : (
-          <footer class="press__pub">
-            <span>{item.publication}</span>
-          </footer>
-        )}
-      </blockquote>
-    ))}
-  </div>
+    <div class="press__inner" aria-live="polite" aria-atomic="true">
+        {
+            quotes.map((item, i) => (
+                <blockquote
+                    class:list={[
+                        "press__quote",
+                        { "press__quote--active": i === 0 },
+                    ]}
+                    data-index={i}
+                    aria-hidden={i !== 0 ? "true" : undefined}
+                >
+                    <p class="press__text">&ldquo;{item.quote}&rdquo;</p>
+                    {item.url ? (
+                        <footer class="press__pub">
+                            <a
+                                href={item.url}
+                                class="press__link"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                tabindex={i !== 0 ? -1 : undefined}
+                            >
+                                {item.publication}
+                                <span class="sr-only">(opens in new tab)</span>
+                            </a>
+                        </footer>
+                    ) : (
+                        <footer class="press__pub">
+                            <span>{item.publication}</span>
+                        </footer>
+                    )}
+                </blockquote>
+            ))
+        }
+    </div>
 </section>
 
 <style>
-  .press {
-    max-width: var(--page-max);
-    margin: 0 auto;
-    padding: clamp(40px, 5.56vw, 80px) 20px;
-    min-height: 33vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .press__inner {
-    position: relative;
-    max-width: 600px;
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  .press__quote {
-    position: absolute;
-    inset: 0;
-    text-align: center;
-    opacity: 0;
-    transition: opacity 0.6s ease;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .press__quote--active {
-    position: relative;
-    opacity: 1;
-  }
-
-  .press__text {
-    font-family: var(--font-body);
-    font-style: normal;
-    font-size: clamp(36px, 3.06vw, 44px);
-    line-height: 1.35;
-    color: var(--color-dark);
-    text-wrap: pretty;
-  }
-
-  .press__pub {
-    margin-top: clamp(12px, 1.11vw, 16px);
-  }
-
-  .press__pub span,
-  .press__link {
-    font-family: var(--font-body);
-    font-weight: 700;
-    font-size: clamp(11px, 0.83vw, 13px);
-    letter-spacing: clamp(1.5px, 0.21vw, 3px);
-    text-transform: uppercase;
-    color: var(--color-pop-accessible);
-  }
-
-  .press__link {
-    transition: opacity 0.2s;
-  }
-
-  .press__link:hover {
-    opacity: 0.7;
-  }
-
-  @media (max-width: 768px) {
-    .press__text {
-      font-size: clamp(22px, 5.5vw, 26px);
+    .press {
+        max-width: var(--page-max);
+        margin: 0 auto;
+        padding: clamp(40px, 5.56vw, 80px) 20px;
+        min-height: 33vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
-  }
+
+    .press__inner {
+        display: grid;
+        max-width: 600px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .press__quote {
+        grid-area: 1 / 1;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.6s ease;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .press__quote--active {
+        opacity: 1;
+    }
+
+    .press__text {
+        font-family: var(--font-body);
+        font-style: normal;
+        font-size: clamp(36px, 3.06vw, 44px);
+        line-height: 1.35;
+        color: var(--color-dark);
+        text-wrap: pretty;
+    }
+
+    .press__pub {
+        margin-top: clamp(12px, 1.11vw, 16px);
+    }
+
+    .press__pub span,
+    .press__link {
+        font-family: var(--font-body);
+        font-weight: 700;
+        font-size: clamp(11px, 0.83vw, 13px);
+        letter-spacing: clamp(1.5px, 0.21vw, 3px);
+        text-transform: uppercase;
+        color: var(--color-pop-accessible);
+    }
+
+    .press__link {
+        transition: opacity 0.2s;
+    }
+
+    .press__link:hover {
+        opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+        .press__text {
+            font-size: clamp(22px, 5.5vw, 26px);
+        }
+    }
 </style>
 
 <script>
-  const container = document.querySelector('.press__inner');
-  const quotes = document.querySelectorAll('.press__quote');
-  if (quotes.length > 1 && container) {
-    let current = 0;
-    let paused = false;
+    const container = document.querySelector(".press__inner");
+    const quotes = document.querySelectorAll(".press__quote");
+    if (quotes.length > 1 && container) {
+        let current = 0;
+        let paused = false;
 
-    container.addEventListener('mouseenter', () => { paused = true; });
-    container.addEventListener('mouseleave', () => { paused = false; });
-    container.addEventListener('focusin', () => { paused = true; });
-    container.addEventListener('focusout', () => { paused = false; });
+        container.addEventListener("mouseenter", () => {
+            paused = true;
+        });
+        container.addEventListener("mouseleave", () => {
+            paused = false;
+        });
+        container.addEventListener("focusin", () => {
+            paused = true;
+        });
+        container.addEventListener("focusout", () => {
+            paused = false;
+        });
 
-    function activate(index: number) {
-      // Hide current
-      quotes[current].classList.remove('press__quote--active');
-      (quotes[current] as HTMLElement).style.position = 'absolute';
-      quotes[current].setAttribute('aria-hidden', 'true');
-      const oldLinks = quotes[current].querySelectorAll('a');
-      oldLinks.forEach((a) => a.setAttribute('tabindex', '-1'));
+        function activate(index: number) {
+            // Hide current
+            quotes[current].classList.remove("press__quote--active");
+            quotes[current].setAttribute("aria-hidden", "true");
+            const oldLinks = quotes[current].querySelectorAll("a");
+            oldLinks.forEach((a) => a.setAttribute("tabindex", "-1"));
 
-      // Show next
-      current = index;
-      (quotes[current] as HTMLElement).style.position = 'relative';
-      quotes[current].classList.add('press__quote--active');
-      quotes[current].removeAttribute('aria-hidden');
-      const newLinks = quotes[current].querySelectorAll('a');
-      newLinks.forEach((a) => a.removeAttribute('tabindex'));
+            // Show next
+            current = index;
+            quotes[current].classList.add("press__quote--active");
+            quotes[current].removeAttribute("aria-hidden");
+            const newLinks = quotes[current].querySelectorAll("a");
+            newLinks.forEach((a) => a.removeAttribute("tabindex"));
+        }
+
+        setInterval(() => {
+            if (!paused) {
+                activate((current + 1) % quotes.length);
+            }
+        }, 5000);
     }
-
-    setInterval(() => {
-      if (!paused) {
-        activate((current + 1) % quotes.length);
-      }
-    }, 5000);
-  }
 </script>

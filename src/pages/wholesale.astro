@@ -1,0 +1,155 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+---
+
+<Base
+  title="Wholesale — Other Milk"
+  description="Bring Other Milk to your cafe, restaurant, or market. Locally sourced, small-batch pecan milk — now available for wholesale partners in Chattanooga and beyond."
+>
+  <Nav />
+  <main id="main">
+    <section class="wholesale">
+      <div class="wholesale__intro">
+        <h1 class="wholesale__title">Wholesale</h1>
+        <p class="wholesale__body">
+          Other Milk is small-batch pecan milk made with Alabama pecans, organic
+          maple syrup, and sea salt&mdash;no gums, no fillers, no oils. We
+          deliver fresh weekly in Chattanooga and are expanding to wholesale
+          partners who share our commitment to real ingredients.
+        </p>
+        <a href="/wholesale/contact" class="wholesale__cta">Get in Touch</a>
+      </div>
+
+      <div class="wholesale__products">
+        <div class="wholesale__product">
+          <img src="/images/pecan-milk.jpg" alt="Bottle of Other Milk Pecan Milk" width="400" height="400" loading="eager" />
+          <h3 class="wholesale__product-name">Pecan Milk</h3>
+          <p class="wholesale__product-desc">Our do-it-all alt milk. Three ingredients: pecans, organic maple syrup, sea salt.</p>
+        </div>
+        <div class="wholesale__product">
+          <img src="/images/chocolate-pecan-milk.jpg" alt="Bottle of Other Milk Chocolate Pecan Milk" width="400" height="400" loading="eager" />
+          <h3 class="wholesale__product-name">Chocolate Pecan Milk</h3>
+          <p class="wholesale__product-desc">Alabama pecans meet organic cacao and Vermont maple syrup. Silky and decadent.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .wholesale {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 20px clamp(60px, 8.33vw, 120px);
+  }
+
+  .wholesale__intro {
+    max-width: 640px;
+    margin: clamp(40px, 5.56vw, 80px) auto 0;
+    text-align: center;
+  }
+
+  .wholesale__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.86vw, 70px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--color-pop);
+  }
+
+  .wholesale__body {
+    margin-top: clamp(16px, 1.67vw, 24px);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    color: var(--color-dark);
+    text-wrap: pretty;
+  }
+
+  .wholesale__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: clamp(20px, 2.08vw, 30px);
+    padding: 11px 18px 8px;
+    background-color: var(--color-pop-accessible);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 4.2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    min-height: 44px;
+    font-feature-settings: 'dlig';
+    transition: opacity 0.2s, transform 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .wholesale__cta:hover {
+    opacity: 0.85;
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .wholesale__cta:active {
+    transform: scale(0.96);
+  }
+
+  /* ── Product cards ── */
+  .wholesale__products {
+    display: flex;
+    justify-content: center;
+    gap: clamp(24px, 3.47vw, 50px);
+    margin-top: clamp(40px, 4.17vw, 60px);
+  }
+
+  .wholesale__product {
+    flex: 0 1 320px;
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-postcard);
+    overflow: hidden;
+    text-align: center;
+  }
+
+  .wholesale__product img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  .wholesale__product-name {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 1.53vw, 22px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    padding: clamp(16px, 1.39vw, 20px) 20px 0;
+  }
+
+  .wholesale__product-desc {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-muted);
+    padding: 8px 20px clamp(20px, 1.67vw, 24px);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .wholesale__products {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .wholesale__product {
+      flex: none;
+      width: 100%;
+      max-width: 360px;
+    }
+  }
+</style>
