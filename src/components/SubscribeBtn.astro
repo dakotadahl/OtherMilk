@@ -3,18 +3,16 @@ interface Props {
   class?: string;
   productId?: number;
   label?: string;
+  directCheckout?: boolean;
 }
 
-const { class: className, productId, label = 'Subscribe' } = Astro.props;
-const href = productId
-  ? `https://www.subbly.co/checkout/buy/${productId}`
-  : '#cart';
-const cartToggle = !productId;
+const { class: className, productId, label = 'Subscribe', directCheckout = false } = Astro.props;
+const href = directCheckout && productId ? `https://www.subbly.co/checkout/buy/${productId}` : '/subscribe';
 ---
 
 <a
   href={href}
-  class:list={['btn', className, { 'subbly-cart': cartToggle }]}
+  class:list={['btn', className]}
 >{label}</a>
 
 <style>

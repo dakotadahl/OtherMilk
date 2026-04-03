@@ -3,15 +3,21 @@ import SubscribeBtn from './SubscribeBtn.astro';
 ---
 
 <header class="nav">
+  <nav class="nav__left" aria-label="Site navigation">
+    <a href="/about" class="nav__link">About</a>
+    <a href="/find-us" class="nav__link">Find Us</a>
+    <a href="/wholesale" class="nav__link">Wholesale</a>
+  </nav>
+
   <a href="/" class="nav__logo" aria-label="Other Milk home">
     <img class="nav__logo-full" src="/images/logomark.svg" alt="Other Milk" width="164" height="78" decoding="async" />
     <img class="nav__logo-sm" src="/images/Logomark_sm.svg" alt="Other Milk" width="165" height="44" decoding="async" />
   </a>
 
   <nav class="nav__links">
-    <a href="/about" class="nav__link">About</a>
     <a href="#cart" class="nav__cart subbly-cart"><span class="nav__cart-label">Cart</span><span class="nav__cart-count subbly-cart-product-count"></span></a>
     <SubscribeBtn productId={417143} />
+    <a href="https://www.subbly.co/account/auth/login?store=drinkother" class="nav__login" target="_blank" rel="noopener noreferrer">Log in</a>
   </nav>
 </header>
 
@@ -21,10 +27,10 @@ import SubscribeBtn from './SubscribeBtn.astro';
     z-index: 10;
     display: flex;
     justify-content: center;
-    align-items: flex-start;
-    max-width: calc(var(--page-max) - 120px);
+    align-items: center;
+    max-width: var(--page-max);
     margin: 0 auto;
-    padding: clamp(24px, 3.47vw, 50px) 20px 0;
+    padding: clamp(24px, 3.47vw, 50px) clamp(20px, 4.24vw, 61px) 0;
   }
 
   .nav__logo {
@@ -44,13 +50,49 @@ import SubscribeBtn from './SubscribeBtn.astro';
     height: auto;
   }
 
-  .nav__links {
+  .nav__left {
     position: absolute;
-    right: 20px;
-    top: clamp(24px, 3.47vw, 50px);
+    left: clamp(20px, 4.24vw, 61px);
     display: flex;
     align-items: center;
     gap: clamp(12px, 2.78vw, 40px);
+  }
+
+  .nav__links {
+    position: absolute;
+    right: clamp(20px, 4.24vw, 61px);
+    display: flex;
+    align-items: center;
+    gap: clamp(12px, 2.78vw, 40px);
+  }
+
+  .nav__login {
+    position: relative;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 4.2px;
+    text-transform: uppercase;
+    color: #999;
+    font-feature-settings: 'dlig';
+  }
+
+  .nav__login::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1.5px;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+  }
+
+  .nav__login:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   .nav__link {
@@ -86,6 +128,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     position: relative;
     display: inline-flex;
     align-items: center;
+    gap: 6px;
     font-family: var(--font-body);
     font-weight: 700;
     font-size: 14px;
@@ -107,7 +150,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     height: 28px;
     padding-right: 1px;
     padding-top: 1.5px;
-    margin-left: 6px;
+    margin-left: 0;
     background: var(--color-pop);
     color: var(--color-white);
     font-size: 13px;
@@ -115,6 +158,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     letter-spacing: 0;
     border-radius: 100px;
     vertical-align: middle;
+    transform: scale(1);
     transition: transform 0.2s ease;
   }
 
@@ -122,8 +166,11 @@ import SubscribeBtn from './SubscribeBtn.astro';
     transform: scale(1.15);
   }
 
-  .nav__cart-count:empty {
-    display: none;
+  .nav__cart-count:empty,
+  .nav__cart-count--zero,
+  .nav__cart:hover .nav__cart-count:empty,
+  .nav__cart:hover .nav__cart-count--zero {
+    transform: scale(0);
   }
 
   .nav__cart-label {
@@ -148,21 +195,14 @@ import SubscribeBtn from './SubscribeBtn.astro';
     transform-origin: left;
   }
 
-  @media (min-width: 1441px) {
-    .nav {
-      padding-left: 0;
-      padding-right: 0;
-    }
-
-    .nav__links {
-      right: 122px;
-    }
-  }
-
   @media (max-width: 768px) {
     .nav {
       justify-content: space-between;
       align-items: center;
+    }
+
+    .nav__left {
+      display: none;
     }
 
     .nav__links {
@@ -170,7 +210,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     }
 
     .nav__cart,
-    .nav__link {
+    .nav__login {
       display: none;
     }
 
@@ -183,3 +223,14 @@ import SubscribeBtn from './SubscribeBtn.astro';
     }
   }
 </style>
+
+<script>
+  const countEl = document.querySelector('.nav__cart-count');
+  if (countEl) {
+    function updateZero() {
+      countEl.classList.toggle('nav__cart-count--zero', !countEl.textContent || countEl.textContent.trim() === '0');
+    }
+    updateZero();
+    new MutationObserver(updateZero).observe(countEl, { childList: true, characterData: true, subtree: true });
+  }
+</script>

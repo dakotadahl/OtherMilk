@@ -5,6 +5,7 @@ import ProductHero from '../../components/ProductHero.astro';
 import NutritionTable from '../../components/NutritionTable.astro';
 import RecipesSection from '../../components/RecipesSection.astro';
 import SocialProof from '../../components/SocialProof.astro';
+import SubscribePromo from '../../components/SubscribePromo.astro';
 import Footer from '../../components/Footer.astro';
 import { products, getProductBySlug } from '../../data/products';
 import '../../styles/global.css';
@@ -27,6 +28,7 @@ const product = getProductBySlug(slug!)!;
     <ProductHero product={product} />
     <!-- <NutritionTable nutrition={product.nutrition} /> -->
     <RecipesSection recipes={product.recipes} productName={product.name} />
+    <SubscribePromo />
     <SocialProof reviews={product.reviews} />
   </main>
   <Footer />
@@ -54,7 +56,7 @@ const product = getProductBySlug(slug!)!;
 </style>
 
 <script>
-  const targets = document.querySelectorAll('.recipes, .proof, .footer__wordmark');
+  const targets = document.querySelectorAll('.recipes, .sub-promo, .proof, .footer__wordmark');
   targets.forEach((el) => el.classList.add('scroll-reveal'));
 
   const observer = new IntersectionObserver(
