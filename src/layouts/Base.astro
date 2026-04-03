@@ -12,7 +12,7 @@ const {
   title = 'Other Milk — Locally Sourced Small-Batch Pecan Milk',
   description = 'No gums, no fillers, no oils — just The Good Stuff. Subscribe for weekly pecan milk delivery in Chattanooga.',
   canonicalURL = Astro.url.href,
-  ogImage = '/images/og-image.jpg',
+  ogImage = '/images/og.jpg',
 } = Astro.props;
 
 const siteURL = Astro.site?.origin ?? Astro.url.origin;
@@ -72,7 +72,9 @@ const structuredData = {
     <meta name="description" content={description} />
     <meta name="theme-color" content="#FFF9F1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" href="/images/logomark.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
     <link rel="canonical" href={canonicalURL} />
     <title>{title}</title>
 
