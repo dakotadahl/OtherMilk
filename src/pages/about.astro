@@ -73,9 +73,9 @@ const cardRotations = [-1.62, 1.8, -1.2, 1.4];
     </section>
 
     <!-- ── Tagline ── -->
-    <section class="about-tagline" aria-label="Tagline">
+    <div class="about-tagline">
       <p class="about-tagline__text">raise a glass to something better</p>
-    </section>
+    </div>
 
     <!-- ── Press ── -->
     <section class="about-press" aria-label="Press">
@@ -219,7 +219,7 @@ const cardRotations = [-1.62, 1.8, -1.2, 1.4];
   }
 
   @media (max-width: 768px) {
-    .about-hero__x {
+    .about-hero__string {
       display: none;
     }
 
@@ -240,7 +240,7 @@ const cardRotations = [-1.62, 1.8, -1.2, 1.4];
   }
 
   .about-tagline__text {
-    font-family: 'Melany Lane', cursive;
+    font-family: 'Melany Lane', 'Georgia', serif;
     font-size: clamp(28px, 3.47vw, 50px);
     color: var(--color-pop);
     text-align: center;
@@ -508,27 +508,6 @@ const cardRotations = [-1.62, 1.8, -1.2, 1.4];
     .about-sourcing__image-wrap {
       max-width: 480px;
       margin: 0 auto;
-    }
-  }
-</style>
-
-<style is:global>
-  .scroll-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .scroll-reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
     }
   }
 </style>

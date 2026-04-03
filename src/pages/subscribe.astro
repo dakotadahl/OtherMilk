@@ -29,27 +29,6 @@ const reviews = [
   <Footer />
 </Base>
 
-<style is:global>
-  .scroll-reveal {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .scroll-reveal.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .scroll-reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-  }
-</style>
-
 <script>
   const targets = document.querySelectorAll('.how, .proof, .banner, .footer__wordmark');
   targets.forEach((el) => el.classList.add('scroll-reveal'));

@@ -1,0 +1,166 @@
+---
+import Base from '../layouts/Base.astro';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import { locations } from '../data/locations';
+import '../styles/global.css';
+---
+
+<Base
+  title="Find Us — Other Milk"
+  description="Find Other Milk at local shops, cafés, and markets across Chattanooga, TN. See hours, addresses, and locations that carry our small-batch pecan milk."
+>
+  <Nav />
+  <main id="main">
+
+    <section class="find" aria-label="Find Us">
+      <h1 class="find__title">Find Us</h1>
+      <p class="find__subtitle">pick up a bottle near you</p>
+
+      <ul class="find__list">
+        {locations.map((loc) => (
+          <li class="find__row">
+            <div class="find__name-col">
+              <h2 class="find__name">{loc.name}</h2>
+              <a href={loc.website} class="find__website" target="_blank" rel="noopener noreferrer">
+                {loc.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                <span class="sr-only">(opens in new tab)</span>
+              </a>
+            </div>
+            <div class="find__details">
+              <p class="find__address">{loc.address}</p>
+              <p class="find__hours">
+                {loc.hours.map((h, i) => (
+                  <Fragment>
+                    {h}{i < loc.hours.length - 1 && <br />}
+                  </Fragment>
+                ))}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .find {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(40px, 5.56vw, 80px) clamp(20px, 4.24vw, 61px) clamp(60px, 6.94vw, 100px);
+  }
+
+  .find__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 5.56vw, 80px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    text-align: center;
+    line-height: 1;
+  }
+
+  .find__subtitle {
+    margin-top: clamp(8px, 0.83vw, 12px);
+    font-family: 'Melany Lane', 'Georgia', serif;
+    font-size: clamp(22px, 2.08vw, 30px);
+    color: var(--color-pop);
+    text-align: center;
+    line-height: 1.4;
+  }
+
+  .find__list {
+    list-style: none;
+    max-width: 900px;
+    margin: clamp(40px, 4.17vw, 60px) auto 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .find__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 2.78vw, 40px);
+    align-items: start;
+    padding: clamp(24px, 2.08vw, 30px) 0;
+    border-bottom: 1px solid var(--color-pop);
+  }
+
+  .find__row:first-child {
+    border-top: 1px solid var(--color-pop);
+  }
+
+  .find__name {
+    font-family: var(--font-display);
+    font-size: clamp(16px, 1.39vw, 20px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    line-height: 1.2;
+    letter-spacing: 0.5px;
+  }
+
+  .find__website {
+    display: inline-block;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: clamp(13px, 0.97vw, 14px);
+    color: var(--color-muted);
+    transition: color 0.2s;
+  }
+
+  .find__website:hover {
+    color: var(--color-pop-accessible);
+  }
+
+  .find__website:focus-visible {
+    outline: 2px solid var(--color-pop);
+    outline-offset: 2px;
+  }
+
+  .find__details {
+    display: flex;
+    gap: clamp(20px, 2.78vw, 40px);
+  }
+
+  .find__address,
+  .find__hours {
+    flex: 1;
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.04vw, 15px);
+    line-height: 1.6;
+    color: var(--color-dark);
+  }
+
+  @media (max-width: 768px) {
+    .find__row {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .find__details {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+</style>
+
+<script>
+  const targets = document.querySelectorAll('.find__list');
+  targets.forEach((el) => el.classList.add('scroll-reveal'));
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 }
+  );
+
+  targets.forEach((el) => observer.observe(el));
+</script>

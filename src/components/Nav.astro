@@ -6,7 +6,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
   <nav class="nav__left" aria-label="Site navigation">
     <a href="/about" class="nav__link">About</a>
     <a href="/find-us" class="nav__link">Find Us</a>
-    <a href="/wholesale" class="nav__link">Wholesale</a>
+    <a href="/products" class="nav__link">Products</a>
   </nav>
 
   <a href="/" class="nav__logo" aria-label="Other Milk home">
@@ -14,8 +14,8 @@ import SubscribeBtn from './SubscribeBtn.astro';
     <img class="nav__logo-sm" src="/images/Logomark_sm.svg" alt="Other Milk" width="165" height="44" decoding="async" />
   </a>
 
-  <nav class="nav__links">
-    <a href="#cart" class="nav__cart subbly-cart"><span class="nav__cart-label">Cart</span><span class="nav__cart-count subbly-cart-product-count"></span></a>
+  <nav class="nav__links" aria-label="Account and cart">
+    <a href="#cart" class="nav__cart subbly-cart" aria-label="Cart"><span class="nav__cart-label" aria-hidden="true">Cart</span><span class="nav__cart-count subbly-cart-product-count" role="status" aria-live="polite"></span></a>
     <SubscribeBtn productId={417143} />
     <a href="https://www.subbly.co/account/auth/login?store=drinkother" class="nav__login" target="_blank" rel="noopener noreferrer">Log in</a>
   </nav>
@@ -30,7 +30,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     align-items: center;
     max-width: var(--page-max);
     margin: 0 auto;
-    padding: clamp(24px, 3.47vw, 50px) clamp(20px, 4.24vw, 61px) 0;
+    padding: clamp(24px, 3.47vw, 50px) clamp(20px, 4.24vw, 61px) clamp(16px, 2.78vw, 40px);
   }
 
   .nav__logo {
@@ -73,7 +73,7 @@ import SubscribeBtn from './SubscribeBtn.astro';
     font-size: 14px;
     letter-spacing: 4.2px;
     text-transform: uppercase;
-    color: #999;
+    color: var(--color-muted);
     font-feature-settings: 'dlig';
   }
 
@@ -171,6 +171,8 @@ import SubscribeBtn from './SubscribeBtn.astro';
   .nav__cart:hover .nav__cart-count:empty,
   .nav__cart:hover .nav__cart-count--zero {
     transform: scale(0);
+    width: 0;
+    overflow: hidden;
   }
 
   .nav__cart-label {

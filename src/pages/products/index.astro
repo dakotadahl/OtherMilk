@@ -1,0 +1,172 @@
+---
+import Base from '../../layouts/Base.astro';
+import Nav from '../../components/Nav.astro';
+import Footer from '../../components/Footer.astro';
+import { shopItems } from '../../data/shop';
+import '../../styles/global.css';
+---
+
+<Base
+  title="Products — Other Milk"
+  description="Shop small-batch pecan milk made with real ingredients. Choose from our Pecan Milk, Chocolate Pecan Milk, or subscribe for weekly delivery."
+>
+  <Nav />
+  <main id="main">
+    <section class="shop">
+      <div class="shop__intro">
+        <h1 class="shop__title">Our Products</h1>
+        <p class="shop__body">
+          Small-batch pecan milk made fresh in Chattanooga. No gums, no fillers,
+          no oils&mdash;just real ingredients you can taste.
+        </p>
+      </div>
+
+      <div class="shop__grid">
+        {shopItems.map((item) => (
+          <a href={item.href} class="shop__card">
+            <div class="shop__card-img-wrap">
+              <img
+                src={item.image}
+                alt=""
+                width="400"
+                height="400"
+                loading="eager"
+              />
+              {item.badge && <span class="shop__badge">{item.badge}</span>}
+            </div>
+            <div class="shop__card-body">
+              <h2 class="shop__card-name">{item.name}</h2>
+              <p class="shop__card-desc">{item.description}</p>
+              {item.price && <p class="shop__card-price">{item.price}</p>}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+</Base>
+
+<style>
+  .shop {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: 0 20px clamp(60px, 8.33vw, 120px);
+  }
+
+  .shop__intro {
+    max-width: 640px;
+    margin: clamp(40px, 5.56vw, 80px) auto 0;
+    text-align: center;
+  }
+
+  .shop__title {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 4.86vw, 70px);
+    line-height: 1.1;
+    text-transform: uppercase;
+    color: var(--color-pop);
+  }
+
+  .shop__body {
+    margin-top: clamp(16px, 1.67vw, 24px);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    color: var(--color-dark);
+    text-wrap: pretty;
+  }
+
+  /* ── Product grid ── */
+  .shop__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.78vw, 40px);
+    margin-top: clamp(40px, 4.17vw, 60px);
+  }
+
+  .shop__card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-white);
+    border-radius: var(--radius-card);
+    box-shadow: var(--shadow-postcard);
+    overflow: hidden;
+    text-decoration: none;
+    color: inherit;
+    transition: box-shadow 0.25s ease;
+  }
+
+  .shop__card:hover {
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .shop__card-img-wrap {
+    position: relative;
+  }
+
+  .shop__card-img-wrap img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .shop__badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--color-pop);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    padding: 6px 12px 4px;
+    border-radius: 2px;
+  }
+
+  .shop__card-body {
+    padding: clamp(16px, 1.39vw, 20px) 20px clamp(20px, 1.67vw, 24px);
+    text-align: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .shop__card-name {
+    font-family: var(--font-display);
+    font-size: clamp(18px, 1.53vw, 22px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+  }
+
+  .shop__card-desc {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-muted);
+    flex: 1;
+  }
+
+  .shop__card-price {
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 16px;
+    color: var(--color-dark);
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 768px) {
+    .shop__grid {
+      grid-template-columns: 1fr;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
