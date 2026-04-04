@@ -141,13 +141,35 @@ const { recipes, productName } = Astro.props;
 
   @media (max-width: 768px) {
     .recipes__grid {
-      grid-template-columns: 1fr;
-      max-width: 440px;
-      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 16px;
+      padding-bottom: 8px;
+      margin-left: -20px;
+      margin-right: -20px;
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .recipe-card {
+      flex: 0 0 85%;
+      max-width: 320px;
+      scroll-snap-align: center;
+      rotate: 0deg;
     }
 
     .recipes__title {
       text-align: center;
+    }
+
+    /* Hide scrollbar but keep scrollable */
+    .recipes__grid::-webkit-scrollbar {
+      display: none;
+    }
+    .recipes__grid {
+      scrollbar-width: none;
     }
   }
 </style>

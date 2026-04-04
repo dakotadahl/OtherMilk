@@ -28,8 +28,8 @@ const { reviews } = Astro.props;
         >
           <div class="review__stars" role="img" aria-label={`${review.stars} out of 5 stars`}>
             {Array.from({ length: review.stars }).map(() => (
-              <svg class="review__star" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M13.85 2.68L9.6 6.92L13.85 11.17L11.17 13.85L6.92 9.6L2.68 13.85L0 11.17L4.24 6.92L0 2.68L2.68 0L6.92 4.24L11.17 0L13.85 2.68Z" fill="var(--color-pop)"/>
+              <svg class="review__star" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="var(--color-pop)"/>
               </svg>
             ))}
           </div>
@@ -148,9 +148,64 @@ const { reviews } = Astro.props;
 
   @media (max-width: 768px) {
     .proof__grid {
-      grid-template-columns: 1fr;
-      max-width: 440px;
-      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      gap: 16px;
+      padding-bottom: 8px;
+    }
+
+    .proof__grid::-webkit-scrollbar {
+      display: none;
+    }
+    .proof__grid {
+      scrollbar-width: none;
+    }
+
+    .review {
+      flex: 0 0 100%;
+      scroll-snap-align: start;
+      rotate: 0deg;
     }
   }
 </style>
+
+<script>
+  function initReviewCarousel() {
+    const mq = window.matchMedia('(max-width: 768px)');
+    const grid = document.querySelector('.proof__grid');
+    if (!grid) return;
+
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    function start() {
+      if (timer) return;
+      const cards = grid!.querySelectorAll('.review');
+      if (cards.length < 2) return;
+      let idx = 0;
+      timer = setInterval(() => {
+        idx = (idx + 1) % cards.length;
+        const card = cards[idx] as HTMLElement;
+        grid!.scrollTo({ left: card.offsetLeft - grid!.offsetLeft, behavior: 'smooth' });
+      }, 4000);
+    }
+
+    function stop() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    function handleChange() {
+      if (mq.matches) start(); else stop();
+    }
+
+    mq.addEventListener('change', handleChange);
+    handleChange();
+
+    // Pause on interaction
+    grid.addEventListener('touchstart', stop, { passive: true });
+    grid.addEventListener('scroll', () => { stop(); }, { passive: true });
+  }
+
+  initReviewCarousel();
+</script>

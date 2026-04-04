@@ -22,24 +22,27 @@ import '../styles/global.css';
           <li class="find__row">
             <div class="find__name-col">
               <h2 class="find__name">{loc.name}</h2>
+            </div>
+            <div class="find__details">
+              <p class="find__address">{loc.address}</p>
               <a href={loc.website} class="find__website" target="_blank" rel="noopener noreferrer">
                 {loc.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
                 <span class="sr-only">(opens in new tab)</span>
               </a>
             </div>
-            <div class="find__details">
-              <p class="find__address">{loc.address}</p>
-              <p class="find__hours">
-                {loc.hours.map((h, i) => (
-                  <Fragment>
-                    {h}{i < loc.hours.length - 1 && <br />}
-                  </Fragment>
-                ))}
-              </p>
-            </div>
           </li>
         ))}
       </ul>
+    </section>
+
+    <section class="stockist" aria-label="Become a stockist">
+      <div class="stockist__inner">
+        <h2 class="stockist__heading">Become a Stockist</h2>
+        <p class="stockist__body">
+          Interested in stocking Other Milk at your shop, café, or market&mdash;or using it behind your bar or in your kitchen? We'd love to hear from you.
+        </p>
+        <a href="/wholesale" class="stockist__cta">Inquire</a>
+      </div>
     </section>
 
   </main>
@@ -101,9 +104,21 @@ import '../styles/global.css';
     letter-spacing: 0.5px;
   }
 
+  .find__details {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .find__address {
+    font-family: var(--font-body);
+    font-size: clamp(14px, 1.04vw, 15px);
+    line-height: 1.6;
+    color: var(--color-dark);
+  }
+
   .find__website {
     display: inline-block;
-    margin-top: 6px;
     font-family: var(--font-body);
     font-size: clamp(13px, 0.97vw, 14px);
     color: var(--color-muted);
@@ -119,29 +134,77 @@ import '../styles/global.css';
     outline-offset: 2px;
   }
 
-  .find__details {
-    display: flex;
-    gap: clamp(20px, 2.78vw, 40px);
+  /* ── Stockist CTA ── */
+  .stockist {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(40px, 5.56vw, 80px) clamp(20px, 4.24vw, 61px) clamp(60px, 6.94vw, 100px);
   }
 
-  .find__address,
-  .find__hours {
-    flex: 1;
+  .stockist__inner {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .stockist__heading {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 2.78vw, 40px);
+    text-transform: uppercase;
+    color: var(--color-pop);
+    line-height: 1.1;
+  }
+
+  .stockist__body {
+    margin-top: clamp(12px, 1.11vw, 16px);
     font-family: var(--font-body);
-    font-size: clamp(14px, 1.04vw, 15px);
+    font-size: clamp(15px, 1.11vw, 16px);
     line-height: 1.6;
     color: var(--color-dark);
+    text-wrap: pretty;
+  }
+
+  .stockist__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: clamp(24px, 2.08vw, 30px);
+    padding: 11px 18px 8px;
+    background-color: var(--color-pop-accessible);
+    color: var(--color-white);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 4.2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    min-height: 44px;
+    font-feature-settings: 'dlig';
+    transition: opacity 0.2s, transform 0.15s ease;
+    white-space: nowrap;
+  }
+
+  .stockist__cta:hover {
+    opacity: 0.85;
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .stockist__cta:active {
+    transform: scale(0.96);
+  }
+
+  .stockist__cta:focus-visible {
+    outline: 2px solid var(--color-pop);
+    outline-offset: 3px;
   }
 
   @media (max-width: 768px) {
     .find__row {
       grid-template-columns: 1fr;
       gap: 12px;
-    }
-
-    .find__details {
-      flex-direction: column;
-      gap: 4px;
     }
   }
 </style>

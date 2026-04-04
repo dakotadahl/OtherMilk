@@ -155,7 +155,7 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
   }
 
   .phero__tagline {
-    margin-top: clamp(8px, 0.83vw, 12px);
+    margin-top: clamp(4px, 0.83vw, 12px);
     font-family: 'Melany Lane', cursive;
     font-style: normal;
     font-size: clamp(24.2px, 2.02vw, 29px);
@@ -194,6 +194,7 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
     font-size: clamp(14px, 1.04vw, 15px);
     color: var(--color-muted);
     letter-spacing: 0.5px;
+    max-width: 66%;
   }
 
   .phero__actions {
@@ -232,6 +233,7 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
 
     .phero__desc {
       max-width: 100%;
+      text-align: justify;
     }
 
     .phero__badge-float {
@@ -242,6 +244,12 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
 
     .phero__back {
       text-align: left;
+    }
+
+    .phero__ingredient-list {
+      max-width: 59.4%;
+      margin-left: auto;
+      margin-right: auto;
     }
 
     .phero__actions {
