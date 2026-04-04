@@ -25,12 +25,11 @@ export const shopItems: ShopItem[] = [
     price: "$14.00",
   },
   {
-    name: "Subscribe & Save",
+    name: "Weekly Milk",
     description:
-      "Fresh pecan milk delivered to your door every week. Never run out, never compromise.",
+      "Fresh pecan milk, ready to drink every week. Choose your flavor, adjust quantity, pause anytime.",
     image: "/images/lifestyle-banner.jpg",
     href: "/subscribe",
     price: "$50.00/mo",
-    badge: "Save 10+%",
   },
 ];
