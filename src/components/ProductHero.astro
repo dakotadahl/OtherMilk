@@ -96,8 +96,14 @@ const webpImage = product.image.replace(/\.jpg$/, '.webp');
     width: 100%;
     height: auto;
     display: block;
-    aspect-ratio: 468 / 402;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
+  }
+
+  @media (max-width: 768px) {
+    .phero__frame img {
+      aspect-ratio: 468 / 402;
+    }
   }
 
   .phero__title-row {
