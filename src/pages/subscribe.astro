@@ -6,13 +6,8 @@ import SubscribeHowItWorks from '../components/SubscribeHowItWorks.astro';
 import SocialProof from '../components/SocialProof.astro';
 import LifestyleBanner from '../components/LifestyleBanner.astro';
 import Footer from '../components/Footer.astro';
-import { products } from '../data/products';
+import { reviews } from '../data/reviews';
 import '../styles/global.css';
-
-const reviews = [
-  ...products[0].reviews.slice(0, 2),
-  ...products[1].reviews.slice(0, 1),
-];
 ---
 
 <Base

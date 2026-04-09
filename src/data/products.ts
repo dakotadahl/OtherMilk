@@ -5,13 +5,6 @@ export interface Recipe {
   difficulty: "Easy" | "Medium";
 }
 
-export interface Review {
-  name: string;
-  location: string;
-  text: string;
-  stars: number;
-}
-
 export interface NutritionFact {
   label: string;
   value: string;
@@ -29,7 +22,6 @@ export interface Product {
   image: string;
   nutrition: NutritionFact[];
   recipes: Recipe[];
-  reviews: Review[];
 }
 
 export const products: Product[] = [
@@ -81,26 +73,6 @@ export const products: Product[] = [
         difficulty: "Medium",
       },
     ],
-    reviews: [
-      {
-        name: "Sarah M.",
-        location: "Chattanooga, TN",
-        text: "I cancelled my oat milk subscription after one bottle. This is the real deal — you can taste how fresh it is.",
-        stars: 5,
-      },
-      {
-        name: "James R.",
-        location: "Signal Mountain, TN",
-        text: "My kids fight over the last glass. We go through two bottles a week now. Sorry not sorry.",
-        stars: 5,
-      },
-      {
-        name: "Priya K.",
-        location: "North Shore, TN",
-        text: "Finally a plant milk that actually froths well. My morning lattes have never been better.",
-        stars: 5,
-      },
-    ],
   },
   {
     slug: "chocolate-pecan-milk",
@@ -149,26 +121,6 @@ export const products: Product[] = [
           "Chia seeds stirred into chocolate pecan milk, left to set overnight. Top with coconut flakes and cacao nibs for extra crunch.",
         time: "5 min + overnight",
         difficulty: "Easy",
-      },
-    ],
-    reviews: [
-      {
-        name: "Marcus T.",
-        location: "Red Bank, TN",
-        text: "I bought this for my kids and ended up hiding it in the back of the fridge for myself. It's that good.",
-        stars: 5,
-      },
-      {
-        name: "Elena W.",
-        location: "Lookout Mountain, TN",
-        text: "Best chocolate milk I've had since I was a kid. And I can actually feel good about drinking it.",
-        stars: 5,
-      },
-      {
-        name: "Devon & Amara",
-        location: "Southside, Chattanooga",
-        text: "We put this in our coffee, our smoothies, and sometimes just drink it straight at midnight. No judgment.",
-        stars: 5,
       },
     ],
   },

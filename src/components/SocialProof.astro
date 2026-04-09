@@ -1,5 +1,5 @@
 ---
-import type { Review } from '../data/products';
+import type { Review } from '../data/reviews';
 
 interface Props {
   reviews: Review[];
@@ -36,7 +36,6 @@ const { reviews } = Astro.props;
           <p class="review__text">&ldquo;{review.text}&rdquo;</p>
           <footer class="review__author">
             <cite class="review__name">{review.name}</cite>
-            <span class="review__location">{review.location}</span>
           </footer>
         </blockquote>
       ))}
@@ -138,12 +137,6 @@ const { reviews } = Astro.props;
     font-size: 14px;
     font-style: normal;
     color: var(--color-dark);
-  }
-
-  .review__location {
-    font-family: var(--font-body);
-    font-size: 13px;
-    color: var(--color-muted);
   }
 
   @media (max-width: 768px) {
