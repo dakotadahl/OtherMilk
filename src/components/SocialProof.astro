@@ -20,25 +20,39 @@ const { reviews } = Astro.props;
       </svg>
     </div>
 
-    <div class="proof__grid">
-      {reviews.map((review, i) => (
-        <blockquote
-          class="review"
-          style={`--review-rot: ${(i % 2 === 0 ? 1 : -1) * (0.4 + i * 0.25)}deg`}
-        >
-          <div class="review__stars" role="img" aria-label={`${review.stars} out of 5 stars`}>
-            {Array.from({ length: review.stars }).map(() => (
-              <svg class="review__star" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="var(--color-pop)"/>
-              </svg>
-            ))}
-          </div>
-          <p class="review__text">&ldquo;{review.text}&rdquo;</p>
-          <footer class="review__author">
-            <cite class="review__name">{review.name}</cite>
-          </footer>
-        </blockquote>
-      ))}
+    <div class="proof__carousel">
+      <div class="proof__track">
+        {reviews.map((review, i) => (
+          <blockquote
+            class="review"
+            style={`--review-rot: ${(i % 2 === 0 ? 1 : -1) * (0.4 + i * 0.25)}deg`}
+          >
+            <div class="review__stars" role="img" aria-label={`${review.stars} out of 5 stars`}>
+              {Array.from({ length: review.stars }).map(() => (
+                <svg class="review__star" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="var(--color-pop)"/>
+                </svg>
+              ))}
+            </div>
+            <p class="review__text">&ldquo;{review.text}&rdquo;</p>
+            <footer class="review__author">
+              <cite class="review__name">{review.name}</cite>
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+
+      <div class="proof__dots" role="tablist" aria-label="Review navigation">
+        {reviews.map((_, i) => (
+          <button
+            class:list={['proof__dot', { 'proof__dot--active': i === 0 }]}
+            role="tab"
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-label={`Go to review ${i + 1}`}
+            data-index={i}
+          />
+        ))}
+      </div>
     </div>
   </div>
 </section>
@@ -77,10 +91,31 @@ const { reviews } = Astro.props;
     text-align: center;
   }
 
-  .proof__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+  .proof__carousel {
+    overflow: hidden;
+    position: relative;
+    cursor: grab;
+    padding: 12px 0;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    padding-left: max(20px, calc((100vw - 1100px) / 2));
+    padding-right: max(20px, calc((100vw - 1100px) / 2));
+    mask-image: linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent);
+    -webkit-mask-image: linear-gradient(to right, transparent, black 60px, black calc(100% - 60px), transparent);
+  }
+
+  .proof__carousel:active {
+    cursor: grabbing;
+  }
+
+  .proof__track {
+    display: flex;
+    transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
     gap: clamp(20px, 2.08vw, 30px);
+  }
+
+  .proof__track.is-dragging {
+    transition: none;
   }
 
   .review {
@@ -90,17 +125,14 @@ const { reviews } = Astro.props;
     box-shadow: var(--shadow-postcard);
     padding: clamp(24px, 2.22vw, 32px);
     rotate: var(--review-rot);
-    transition: box-shadow 0.4s ease, rotate 0.4s ease;
     display: flex;
     flex-direction: column;
-  }
-
-  .review:hover {
-    box-shadow:
-      -2px 4px 6px rgba(0, 0, 0, 0.08),
-      0 4px 20px rgba(0, 0, 0, 0.18),
-      -1px 2px 3px rgba(0, 0, 0, 0.1);
-    rotate: 0deg;
+    flex: 0 0 var(--card-width);
+    aspect-ratio: 1 / 1;
+    min-width: 0;
+    overflow-y: auto;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
   .review__stars {
@@ -140,66 +172,212 @@ const { reviews } = Astro.props;
     color: var(--color-dark);
   }
 
+  .proof__dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: clamp(24px, 2.08vw, 32px);
+  }
+
+  .proof__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1.5px solid var(--color-pop);
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: background 0.25s ease, transform 0.25s ease;
+  }
+
+  .proof__dot--active {
+    background: var(--color-pop);
+    transform: scale(1.2);
+  }
+
+  .proof__dot:hover:not(.proof__dot--active) {
+    background: rgba(254, 35, 87, 0.3);
+  }
+
   @media (max-width: 768px) {
-    .proof__grid {
-      display: flex;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-      gap: 16px;
-      padding-bottom: 8px;
-    }
-
-    .proof__grid::-webkit-scrollbar {
-      display: none;
-    }
-    .proof__grid {
-      scrollbar-width: none;
-    }
-
     .review {
-      flex: 0 0 100%;
-      scroll-snap-align: start;
       rotate: 0deg;
     }
   }
 </style>
 
 <script>
-  function initReviewCarousel() {
-    const mq = window.matchMedia('(max-width: 768px)');
-    const grid = document.querySelector('.proof__grid');
-    if (!grid) return;
+  function initReviewCarousels() {
+    document.querySelectorAll<HTMLElement>('.proof__carousel').forEach((carousel) => {
+      const track = carousel.querySelector<HTMLElement>('.proof__track');
+      const dots = carousel.querySelectorAll<HTMLButtonElement>('.proof__dot');
+      const originalCards = Array.from(carousel.querySelectorAll<HTMLElement>('.review'));
+      if (!track || originalCards.length === 0) return;
 
-    let timer: ReturnType<typeof setInterval> | null = null;
+      const totalOriginal = originalCards.length;
+      let autoTimer: ReturnType<typeof setInterval> | null = null;
 
-    function start() {
-      if (timer) return;
-      const cards = grid!.querySelectorAll('.review');
-      if (cards.length < 2) return;
-      let idx = 0;
-      timer = setInterval(() => {
-        idx = (idx + 1) % cards.length;
-        const card = cards[idx] as HTMLElement;
-        grid!.scrollTo({ left: card.offsetLeft - grid!.offsetLeft, behavior: 'smooth' });
-      }, 4000);
-    }
+      function getPerPage(): number {
+        if (window.innerWidth <= 480) return 1;
+        if (window.innerWidth <= 768) return 2;
+        return 3;
+      }
 
-    function stop() {
-      if (timer) { clearInterval(timer); timer = null; }
-    }
+      function getGap(): number {
+        return parseFloat(getComputedStyle(track!).columnGap) || 24;
+      }
 
-    function handleChange() {
-      if (mq.matches) start(); else stop();
-    }
+      function updateCardWidths() {
+        const style = getComputedStyle(carousel);
+        const visibleWidth = carousel.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
+        const perPage = getPerPage();
+        const gap = getGap();
+        const cardWidth = (visibleWidth - (perPage - 1) * gap) / perPage;
+        carousel.style.setProperty('--card-width', `${cardWidth}px`);
+      }
 
-    mq.addEventListener('change', handleChange);
-    handleChange();
+      // Clone enough cards to fill a full page past the end for seamless looping
+      function setupClones() {
+        track!.querySelectorAll('.review--clone').forEach((c) => c.remove());
+        const perPage = getPerPage();
+        for (let i = 0; i < perPage; i++) {
+          const clone = originalCards[i % totalOriginal].cloneNode(true) as HTMLElement;
+          clone.classList.add('review--clone');
+          clone.setAttribute('aria-hidden', 'true');
+          track!.appendChild(clone);
+        }
+      }
 
-    // Pause on interaction
-    grid.addEventListener('touchstart', stop, { passive: true });
-    grid.addEventListener('scroll', () => { stop(); }, { passive: true });
+      function getAllCards(): HTMLElement[] {
+        return Array.from(track!.querySelectorAll<HTMLElement>('.review'));
+      }
+
+      let currentIndex = 0;
+
+      function getSlideOffset(index: number): number {
+        const allCards = getAllCards();
+        if (index >= allCards.length) return 0;
+        return allCards[index].offsetLeft - allCards[0].offsetLeft;
+      }
+
+      function updateDots() {
+        const wrappedIndex = currentIndex % totalOriginal;
+        dots.forEach((dot, i) => {
+          const active = i === wrappedIndex;
+          dot.classList.toggle('proof__dot--active', active);
+          dot.setAttribute('aria-selected', String(active));
+        });
+      }
+
+      function goTo(index: number, animate = true) {
+        currentIndex = index;
+        if (!animate) {
+          track!.style.transition = 'none';
+        }
+        track!.style.transform = `translateX(-${getSlideOffset(currentIndex)}px)`;
+        if (!animate) {
+          // Force reflow then restore transition
+          track!.offsetHeight;
+          track!.style.transition = '';
+        }
+        updateDots();
+      }
+
+      // After transition ends on a clone, snap back to the real card
+      track.addEventListener('transitionend', () => {
+        if (currentIndex >= totalOriginal) {
+          goTo(currentIndex % totalOriginal, false);
+        }
+      });
+
+      function next() {
+        goTo(currentIndex + 1);
+      }
+
+      function prev() {
+        if (currentIndex > 0) {
+          goTo(currentIndex - 1);
+        } else {
+          // Jump to the last real card without animation, then stay
+          goTo(totalOriginal - 1, false);
+        }
+      }
+
+      // Dot click
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          stopAuto();
+          goTo(Number(dot.dataset.index));
+          startAuto();
+        });
+      });
+
+      // Drag / swipe
+      let dragStartX = 0;
+      let dragOffset = 0;
+      let isDragging = false;
+
+      function onPointerDown(e: PointerEvent) {
+        isDragging = true;
+        dragStartX = e.clientX;
+        dragOffset = getSlideOffset(currentIndex);
+        track!.classList.add('is-dragging');
+        carousel.setPointerCapture(e.pointerId);
+        stopAuto();
+      }
+
+      function onPointerMove(e: PointerEvent) {
+        if (!isDragging) return;
+        const dx = e.clientX - dragStartX;
+        track!.style.transform = `translateX(${-dragOffset + dx}px)`;
+      }
+
+      function onPointerUp(e: PointerEvent) {
+        if (!isDragging) return;
+        isDragging = false;
+        track!.classList.remove('is-dragging');
+        const dx = e.clientX - dragStartX;
+        const threshold = carousel.offsetWidth * 0.15;
+        if (dx < -threshold) {
+          next();
+        } else if (dx > threshold) {
+          prev();
+        } else {
+          goTo(currentIndex);
+        }
+        startAuto();
+      }
+
+      carousel.addEventListener('pointerdown', onPointerDown);
+      carousel.addEventListener('pointermove', onPointerMove);
+      carousel.addEventListener('pointerup', onPointerUp);
+      carousel.addEventListener('pointercancel', onPointerUp);
+      carousel.addEventListener('dragstart', (e) => e.preventDefault());
+
+      // Auto-advance
+      function startAuto() {
+        if (autoTimer) return;
+        autoTimer = setInterval(next, 5000);
+      }
+      function stopAuto() {
+        if (autoTimer) { clearInterval(autoTimer); autoTimer = null; }
+      }
+
+      // Recalc on resize
+      window.addEventListener('resize', () => {
+        updateCardWidths();
+        setupClones();
+        if (currentIndex >= totalOriginal) currentIndex = currentIndex % totalOriginal;
+        goTo(currentIndex, false);
+      });
+
+      updateCardWidths();
+      setupClones();
+      startAuto();
+      carousel.addEventListener('mouseenter', stopAuto);
+      carousel.addEventListener('mouseleave', startAuto);
+    });
   }
 
-  initReviewCarousel();
+  initReviewCarousels();
 </script>

@@ -31,7 +31,7 @@ const shuffled = [...reviews].sort(() => Math.random() - 0.5);
     <!-- <NutritionTable nutrition={product.nutrition} /> -->
     <RecipesSection recipes={product.recipes} productName={product.name} />
     <SubscribePromo />
-    <SocialProof reviews={shuffled.slice(0, 3)} />
+    <SocialProof reviews={shuffled} />
   </main>
   <Footer />
 </Base>
