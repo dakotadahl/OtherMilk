@@ -63,5 +63,5 @@ public/
 
 ## Deployment
 
-- **Hosting:** Vercel, connected to GitHub repo `dakotadahl/OtherMilk`
+- **Hosting:** Netlify, connected to GitHub repo `dakotadahl/OtherMilk`
 - Pushes to `main` trigger automatic production deploys.
