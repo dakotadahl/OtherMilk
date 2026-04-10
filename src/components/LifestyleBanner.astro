@@ -1,16 +1,20 @@
+---
+import { Picture } from 'astro:assets';
+import lifestyleImg from '../assets/images/lifestyle.webp';
+---
+
 <section class="banner" aria-label="Good milk, better weekly">
   <div class="banner__image-wrap">
-    <picture>
-      <source srcset="/images/lifestyle.webp" type="image/webp" />
-      <img
-        src="/images/lifestyle.jpg"
-        alt="Other Milk bottles arranged in a crate"
-        width="1318"
-        height="671"
-        loading="lazy"
-        decoding="async"
-      />
-    </picture>
+    <Picture
+      src={lifestyleImg}
+      formats={['avif', 'webp']}
+      widths={[400, 800, 1200, 1600]}
+      quality={80}
+      sizes="(max-width: 768px) 100vw, min(1318px, calc(100vw - 122px))"
+      alt="Other Milk bottles arranged in a crate"
+      loading="lazy"
+      decoding="async"
+    />
     <div class="banner__overlay">
       <p class="banner__text">Good<br />milk.</p>
       <p class="banner__text">Better<br />weekly.</p>

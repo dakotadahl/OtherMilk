@@ -1,22 +1,28 @@
 ---
+import { Picture } from 'astro:assets';
+import lifestyleImg from '../assets/images/lifestyle.webp';
+import bottlesImg from '../assets/images/5.26.23b-4.webp';
+import sceneImg from '../assets/images/DSC00785.webp';
+import chocolateImg from '../assets/images/chocolate-pecan-milk.webp';
+import pecansImg from '../assets/images/DSC00954.webp';
 ---
 
 <section class="collage" aria-label="Photo collage">
   <div class="collage__grid">
     <div class="collage__item collage__item--tall">
-      <img src="/images/lifestyle.webp" alt="Other Milk lifestyle" loading="lazy" />
+      <Picture src={lifestyleImg} formats={['avif', 'webp']} widths={[200, 400, 600]} quality={80} sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 320px" alt="Other Milk lifestyle" loading="lazy" />
     </div>
     <div class="collage__item collage__item--square">
-      <img src="/images/5.26.23b-4.webp" alt="Other Milk bottles" loading="lazy" />
+      <Picture src={bottlesImg} formats={['avif', 'webp']} widths={[200, 400, 600]} quality={80} sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 320px" alt="Other Milk bottles" loading="lazy" />
     </div>
     <div class="collage__item collage__item--wide">
-      <img src="/images/DSC00785.webp" alt="Other Milk scene" loading="lazy" />
+      <Picture src={sceneImg} formats={['avif', 'webp']} widths={[200, 400, 600]} quality={80} sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 320px" alt="Other Milk scene" loading="lazy" />
     </div>
     <div class="collage__item collage__item--square">
-      <img src="/images/chocolate-pecan-milk.webp" alt="Chocolate pecan milk bottle" loading="lazy" />
+      <Picture src={chocolateImg} formats={['avif', 'webp']} widths={[200, 400, 600]} quality={80} sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 320px" alt="Chocolate pecan milk bottle" loading="lazy" />
     </div>
     <div class="collage__item collage__item--tall">
-      <img src="/images/DSC00954.webp" alt="Fresh pecans" loading="lazy" />
+      <Picture src={pecansImg} formats={['avif', 'webp']} widths={[200, 400, 600]} quality={80} sizes="(max-width: 480px) 50vw, (max-width: 768px) 50vw, 320px" alt="Fresh pecans" loading="lazy" />
     </div>
   </div>
 </section>

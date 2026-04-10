@@ -1,3 +1,8 @@
+---
+import { Picture } from 'astro:assets';
+import heroImg from '../assets/images/hero.webp';
+---
+
 <section class="hero" aria-label="Hero image">
   <div class="hero__string">
     <svg class="hero__x" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -9,16 +14,16 @@
   </div>
 
   <div class="hero__image-wrap">
-    <picture>
-      <source srcset="/images/hero.webp" type="image/webp" />
-      <img
-        src="/images/hero.jpg"
-        alt="Hand holding a bottle of Other Milk pecan milk"
-        width="1600"
-        height="1067"
-        fetchpriority="high"
-      />
-    </picture>
+    <Picture
+      src={heroImg}
+      formats={['avif', 'webp']}
+      widths={[400, 800, 1200, 1600]}
+      quality={80}
+      sizes="(max-width: 768px) 90vw, min(1105px, calc(100vw - 40px))"
+      alt="Hand holding a bottle of Other Milk pecan milk"
+      loading="eager"
+      fetchpriority="high"
+    />
   </div>
 
   <div class="hero__string">

@@ -1,25 +1,33 @@
 ---
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
 interface Props {
   name: string;
   price: string;
   description: string;
-  image: string;
+  image: ImageMetadata;
   slug?: string;
   rotation?: number;
 }
 
 const { name, price, description, image, slug, rotation = 0 } = Astro.props;
-const webpImage = image.replace(/\.jpg$/, '.webp');
 const href = slug ? `/products/${slug}` : '#';
 ---
 
 <article class="card" style={`--card-rotation: ${rotation}deg`}>
   <a href={href} class="card__link" aria-label={`View ${name}`}>
     <div class="card__image">
-      <picture>
-        <source srcset={webpImage} type="image/webp" />
-        <img src={image} alt={name} width="468" height="402" loading="lazy" decoding="async" />
-      </picture>
+      <Picture
+        src={image}
+        formats={['avif', 'webp']}
+        widths={[300, 468, 936]}
+        quality={80}
+        sizes="(max-width: 480px) calc(50vw - 30px), 468px"
+        alt={name}
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <div class="card__price">
       <span>{price}</span>

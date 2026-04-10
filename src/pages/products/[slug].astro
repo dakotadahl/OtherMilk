@@ -23,7 +23,7 @@ const shuffled = [...reviews].sort(() => Math.random() - 0.5);
 <Base
   title={`${product.name} — Other Milk`}
   description={`${product.tagline} ${product.ingredients.join(', ')}. ${product.price} per bottle.`}
-  ogImage={product.image}
+  ogImage={`/images/${product.slug}.jpg`}
 >
   <Nav />
   <main id="main">

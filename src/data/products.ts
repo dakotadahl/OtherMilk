@@ -1,3 +1,7 @@
+import type { ImageMetadata } from 'astro';
+import pecanMilkImg from '../assets/images/pecan-milk.webp';
+import chocolatePecanMilkImg from '../assets/images/chocolate-pecan-milk.webp';
+
 export interface Recipe {
   title: string;
   description: string;
@@ -19,7 +23,7 @@ export interface Product {
   tagline: string;
   description: string;
   ingredients: string[];
-  image: string;
+  image: ImageMetadata;
   nutrition: NutritionFact[];
   recipes: Recipe[];
 }
@@ -39,7 +43,7 @@ export const products: Product[] = [
       "Organic Maple Syrup",
       "Sea salt",
     ],
-    image: "/images/pecan-milk.webp",
+    image: pecanMilkImg,
     nutrition: [
       { label: "Calories", value: "130" },
       { label: "Total Fat", value: "11g", daily: "14%" },
@@ -89,7 +93,7 @@ export const products: Product[] = [
       "Organic Cacao Powder",
       "Sea salt",
     ],
-    image: "/images/chocolate-pecan-milk.webp",
+    image: chocolatePecanMilkImg,
     nutrition: [
       { label: "Calories", value: "160" },
       { label: "Total Fat", value: "12g", daily: "15%" },

@@ -1,4 +1,5 @@
 ---
+import { Picture } from 'astro:assets';
 import SubscribeBtn from './SubscribeBtn.astro';
 import type { Product } from '../data/products';
 
@@ -7,23 +8,22 @@ interface Props {
 }
 
 const { product } = Astro.props;
-const webpImage = product.image.replace(/\.jpg$/, '.webp');
 ---
 
 <section class="phero" aria-label={product.name}>
   <div class="phero__layout">
     <div class="phero__image-col">
       <div class="phero__frame">
-        <picture>
-          <source srcset={webpImage} type="image/webp" />
-          <img
-            src={product.image}
-            alt={product.name}
-            width="468"
-            height="402"
-            fetchpriority="high"
-          />
-        </picture>
+        <Picture
+          src={product.image}
+          formats={['avif', 'webp']}
+          widths={[300, 500, 1000]}
+          quality={80}
+          sizes="(max-width: 768px) min(400px, calc(100vw - 40px)), 500px"
+          alt={product.name}
+          loading="eager"
+          fetchpriority="high"
+        />
       </div>
     </div>
 
