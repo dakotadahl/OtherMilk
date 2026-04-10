@@ -94,6 +94,13 @@ const structuredData = {
     <!-- Structured Data (JSON-LD) -->
     <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
 
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-35eLf4_p-YFk3rF76cDfh.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
+
     <!-- Preload display font -->
     <link
       rel="preload"
