@@ -20,8 +20,8 @@ const { reviews } = Astro.props;
       </svg>
     </div>
 
-    <div class="proof__carousel">
-      <div class="proof__track">
+    <div class="proof__carousel" aria-roledescription="carousel" aria-label="Customer reviews carousel" tabindex="0">
+      <div class="proof__track" aria-live="off">
         {reviews.map((review, i) => (
           <blockquote
             class="review"
@@ -42,12 +42,10 @@ const { reviews } = Astro.props;
         ))}
       </div>
 
-      <div class="proof__dots" role="tablist" aria-label="Review navigation">
+      <div class="proof__dots" aria-label="Review navigation">
         {reviews.map((_, i) => (
           <button
             class:list={['proof__dot', { 'proof__dot--active': i === 0 }]}
-            role="tab"
-            aria-selected={i === 0 ? 'true' : 'false'}
             aria-label={`Go to review ${i + 1}`}
             data-index={i}
           />
@@ -86,7 +84,7 @@ const { reviews } = Astro.props;
     font-family: var(--font-display);
     font-size: clamp(32px, 4.17vw, 60px);
     text-transform: uppercase;
-    color: var(--color-pop);
+    color: var(--color-pop-accessible);
     line-height: 0.95;
     text-align: center;
   }
@@ -354,6 +352,21 @@ const { reviews } = Astro.props;
       carousel.addEventListener('pointercancel', onPointerUp);
       carousel.addEventListener('dragstart', (e) => e.preventDefault());
 
+      // Keyboard navigation
+      carousel.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'ArrowRight') {
+          e.preventDefault();
+          stopAuto();
+          next();
+          startAuto();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          stopAuto();
+          prev();
+          startAuto();
+        }
+      });
+
       // Auto-advance
       function startAuto() {
         if (autoTimer) return;
@@ -376,6 +389,8 @@ const { reviews } = Astro.props;
       startAuto();
       carousel.addEventListener('mouseenter', stopAuto);
       carousel.addEventListener('mouseleave', startAuto);
+      carousel.addEventListener('focusin', stopAuto);
+      carousel.addEventListener('focusout', startAuto);
     });
   }
 

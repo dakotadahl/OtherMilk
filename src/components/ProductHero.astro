@@ -29,7 +29,7 @@ const { product } = Astro.props;
 
     <div class="phero__text-col">
       <p class="phero__back">
-        <a href="/" class="phero__back-link">&larr; Back to all products</a>
+        <a href="/products" class="phero__back-link">&larr; Back to all products</a>
       </p>
       <div class="phero__title-row">
         <h1 class="phero__name">{product.name}</h1>
@@ -120,8 +120,8 @@ const { product } = Astro.props;
     align-items: center;
     justify-content: center;
     background: transparent;
-    color: var(--color-pop);
-    border: 2px solid var(--color-pop);
+    color: var(--color-pop-accessible);
+    border: 2px solid var(--color-pop-accessible);
     border-radius: 100px;
     font-family: var(--font-body);
     font-weight: 700;
@@ -157,7 +157,7 @@ const { product } = Astro.props;
     font-size: clamp(36px, 4.17vw, 60px);
     line-height: 1.1;
     text-transform: uppercase;
-    color: var(--color-pop);
+    color: var(--color-pop-accessible);
   }
 
   .phero__tagline {
@@ -165,7 +165,7 @@ const { product } = Astro.props;
     font-family: 'Melany Lane', cursive;
     font-style: normal;
     font-size: clamp(24.2px, 2.02vw, 29px);
-    color: var(--color-pop);
+    color: var(--color-pop-accessible);
     line-height: 1.4;
     text-transform: lowercase;
   }
