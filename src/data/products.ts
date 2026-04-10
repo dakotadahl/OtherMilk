@@ -39,7 +39,7 @@ export const products: Product[] = [
       "Organic Maple Syrup",
       "Sea salt",
     ],
-    image: "/images/pecan-milk.jpg",
+    image: "/images/pecan-milk.webp",
     nutrition: [
       { label: "Calories", value: "130" },
       { label: "Total Fat", value: "11g", daily: "14%" },
@@ -89,7 +89,7 @@ export const products: Product[] = [
       "Organic Cacao Powder",
       "Sea salt",
     ],
-    image: "/images/chocolate-pecan-milk.jpg",
+    image: "/images/chocolate-pecan-milk.webp",
     nutrition: [
       { label: "Calories", value: "160" },
       { label: "Total Fat", value: "12g", daily: "15%" },

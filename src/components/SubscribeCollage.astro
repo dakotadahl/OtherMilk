@@ -1,0 +1,149 @@
+---
+---
+
+<section class="collage" aria-label="Photo collage">
+  <div class="collage__grid">
+    <div class="collage__item collage__item--tall">
+      <img src="/images/lifestyle.webp" alt="Other Milk lifestyle" loading="lazy" />
+    </div>
+    <div class="collage__item collage__item--square">
+      <img src="/images/5.26.23b-4.webp" alt="Other Milk bottles" loading="lazy" />
+    </div>
+    <div class="collage__item collage__item--wide">
+      <img src="/images/DSC00785.webp" alt="Other Milk scene" loading="lazy" />
+    </div>
+    <div class="collage__item collage__item--square">
+      <img src="/images/chocolate-pecan-milk.webp" alt="Chocolate pecan milk bottle" loading="lazy" />
+    </div>
+    <div class="collage__item collage__item--tall">
+      <img src="/images/DSC00954.webp" alt="Fresh pecans" loading="lazy" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .collage {
+    max-width: var(--page-max);
+    margin: 0 auto;
+    padding: clamp(32px, 3.47vw, 48px) 20px 0;
+  }
+
+  .collage__grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: auto auto;
+    gap: clamp(10px, 1.04vw, 16px);
+    max-width: 960px;
+    margin: 0 auto;
+    align-items: center;
+  }
+
+  .collage__item {
+    border-radius: var(--radius-card, 16px);
+    overflow: hidden;
+  }
+
+  .collage__item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Row 1: tall (4 cols) + square (4 cols) + tall (4 cols) */
+  .collage__item--tall:nth-child(1) {
+    grid-column: 1 / 5;
+    grid-row: 1 / 3;
+    aspect-ratio: 3 / 4;
+  }
+
+  .collage__item--square:nth-child(2) {
+    grid-column: 5 / 9;
+    grid-row: 1 / 2;
+    aspect-ratio: 1;
+  }
+
+  .collage__item--wide:nth-child(3) {
+    grid-column: 5 / 9;
+    grid-row: 2 / 3;
+    aspect-ratio: 4 / 3;
+  }
+
+  .collage__item--square:nth-child(4) {
+    grid-column: 9 / 13;
+    grid-row: 1 / 2;
+    aspect-ratio: 1;
+  }
+
+  .collage__item--tall:nth-child(5) {
+    grid-column: 9 / 13;
+    grid-row: 1 / 3;
+    aspect-ratio: 3 / 4;
+  }
+
+  /* On desktop, items 2-3 stack in the middle, items 4-5 share right side */
+  /* Rearrange: tall | square + wide stacked | tall */
+  .collage__item--square:nth-child(4) {
+    display: none;
+  }
+
+  .collage__item--tall:nth-child(5) {
+    grid-column: 9 / 13;
+    grid-row: 1 / 3;
+  }
+
+  @media (max-width: 768px) {
+    .collage__grid {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto auto;
+    }
+
+    .collage__item--tall:nth-child(1) {
+      grid-column: 1 / 2;
+      grid-row: 1 / 3;
+    }
+
+    .collage__item--square:nth-child(2) {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      aspect-ratio: 1;
+    }
+
+    .collage__item--wide:nth-child(3) {
+      grid-column: 2 / 3;
+      grid-row: 2 / 3;
+    }
+
+    .collage__item--square:nth-child(4) {
+      display: none;
+    }
+
+    .collage__item--tall:nth-child(5) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .collage__grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto;
+      gap: 8px;
+    }
+
+    .collage__item--tall:nth-child(1) {
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+      aspect-ratio: 3 / 4;
+    }
+
+    .collage__item--square:nth-child(2) {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
+      aspect-ratio: 3 / 4;
+    }
+
+    .collage__item--wide:nth-child(3) {
+      display: none;
+    }
+  }
+</style>

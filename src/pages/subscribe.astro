@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Nav from '../components/Nav.astro';
 import SubscribeHero from '../components/SubscribeHero.astro';
+import SubscribeCollage from '../components/SubscribeCollage.astro';
 import SubscribeHowItWorks from '../components/SubscribeHowItWorks.astro';
 import SocialProof from '../components/SocialProof.astro';
 import LifestyleBanner from '../components/LifestyleBanner.astro';
@@ -17,6 +18,7 @@ import '../styles/global.css';
   <Nav />
   <main id="main">
     <SubscribeHero />
+    <SubscribeCollage />
     <SubscribeHowItWorks />
     <SocialProof reviews={reviews} />
     <LifestyleBanner />
@@ -25,7 +27,7 @@ import '../styles/global.css';
 </Base>
 
 <script>
-  const targets = document.querySelectorAll('.how, .proof, .banner, .footer__wordmark');
+  const targets = document.querySelectorAll('.collage, .how, .proof, .banner, .footer__wordmark');
   targets.forEach((el) => el.classList.add('scroll-reveal'));
 
   const observer = new IntersectionObserver(
