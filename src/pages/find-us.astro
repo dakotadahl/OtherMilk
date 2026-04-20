@@ -19,9 +19,10 @@ import '../styles/global.css';
 
       <ul class="find__list">
         {locations.map((loc) => (
-          <li class="find__row">
+          <li class:list={["find__row", { "find__row--coming-soon": loc.comingSoon }]}>
             <div class="find__name-col">
               <h2 class="find__name">{loc.name}</h2>
+              {loc.comingSoon && <span class="find__badge">coming soon</span>}
             </div>
             <div class="find__details">
               <p class="find__address">{loc.address}</p>
@@ -199,6 +200,21 @@ import '../styles/global.css';
   .stockist__cta:focus-visible {
     outline: 2px solid var(--color-pop);
     outline-offset: 3px;
+  }
+
+  .find__row--coming-soon {
+    opacity: 0.45;
+  }
+
+  .find__badge {
+    display: block;
+    margin-top: 6px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 3.61px;
+    color: var(--color-muted);
   }
 
   @media (max-width: 768px) {

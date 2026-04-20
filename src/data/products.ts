@@ -20,6 +20,7 @@ export interface Product {
   name: string;
   price: string;
   subblyProductId: number;
+  subblySubscriptionId: number;
   tagline: string;
   description: string;
   ingredients: string[];
@@ -34,6 +35,7 @@ export const products: Product[] = [
     name: "Pecan Milk",
     price: "$14.00",
     subblyProductId: 416895,
+    subblySubscriptionId: 418874,
     tagline: "Our do-it-all alt milk",
     description:
       "Your go-to for lattes and cappuccinos, the milk for your cereal in the morning (or at midnight), the milk for that banana bread loaf–this is the daily driver: the Regular Pecan Milk. It’s three simple ingredients: Alabama pecans, organic maple syrup from Vermont, and a touch of Redmond’s Real sea salt to lift it all up at the end–it’ll be your shelfie staple.",
@@ -83,6 +85,7 @@ export const products: Product[] = [
     name: "Chocolate Pecan Milk",
     price: "$14.00",
     subblyProductId: 416902,
+    subblySubscriptionId: 418874,
     tagline: "You deserve a treat",
     description:
       "Our most decadent profile; Alabama pecans meet organic cacao, brought together with organic Vermont maple syrup, and a pinch of Redmond’s Real Salt. Silky, chocolatey, and luxurious.",

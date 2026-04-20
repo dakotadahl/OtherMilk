@@ -49,8 +49,9 @@ const { product } = Astro.props;
 
       <div class="phero__actions">
         <SubscribeBtn productId={product.subblyProductId} label="Add to Cart" directCheckout />
-        <span class="phero__aside">Free local pick-up Wed-Sat.</span>
+        <a href={`https://www.subbly.co/checkout/buy/${product.subblySubscriptionId}`} class="phero__subscribe-cta">Subscribe</a>
       </div>
+      <span class="phero__aside">Free local pick-up Wed-Sat.</span>
 
     </div>
   </div>
@@ -210,7 +211,41 @@ const { product } = Astro.props;
     gap: 20px;
   }
 
+  .phero__subscribe-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 18px 8px;
+    background-color: transparent;
+    color: var(--color-pop-accessible);
+    border: 2px solid var(--color-pop-accessible);
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 4.2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    min-height: 44px;
+    font-feature-settings: 'dlig';
+    transition: opacity 0.2s, transform 0.15s ease, background-color 0.2s, color 0.2s;
+    white-space: nowrap;
+  }
+
+  .phero__subscribe-cta:hover {
+    background-color: var(--color-pop-accessible);
+    color: var(--color-white);
+    box-shadow:
+      -2px 4px 6px rgba(0, 0, 0, 0.08),
+      0 4px 20px rgba(0, 0, 0, 0.18),
+      -1px 2px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  .phero__subscribe-cta:active {
+    transform: scale(0.96);
+  }
+
   .phero__aside {
+    margin-top: 16px;
     font-family: var(--font-body);
     font-size: 14px;
     color: var(--color-muted);

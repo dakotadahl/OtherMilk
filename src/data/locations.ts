@@ -2,6 +2,7 @@ export interface Location {
   name: string;
   address: string;
   website: string;
+  comingSoon?: boolean;
 }
 
 export const locations: Location[] = [
@@ -26,11 +27,6 @@ export const locations: Location[] = [
     website: "https://butterthebread.com/",
   },
   {
-    name: "Southern Squeeze",
-    address: "1301 Dorchester Rd, Chattanooga, TN 37405",
-    website: "https://southernsqueeze.com/",
-  },
-  {
     name: "Main Street Farmer's Market",
     address: "Chestnut Street &, W 20th St, Chattanooga, TN",
     website: "https://mainstfarmersmarket.com/",
@@ -39,5 +35,11 @@ export const locations: Location[] = [
     name: "Understory",
     address: "400 E Main St Suite 170, Chattanooga, TN 37408",
     website: "https://understorytea.com/",
+  },
+  {
+    name: "Southern Squeeze",
+    address: "1301 Dorchester Rd, Chattanooga, TN 37405",
+    website: "https://southernsqueeze.com/",
+    comingSoon: true,
   },
 ];
