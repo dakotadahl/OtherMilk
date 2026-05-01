@@ -1,89 +1,89 @@
 ---
-import ProductCard from './ProductCard.astro';
-import pecanMilkImg from '../assets/images/pecan-milk.webp';
-import chocolatePecanMilkImg from '../assets/images/chocolate-pecan-milk.webp';
+import ProductCard from "./ProductCard.astro";
+import pecanMilkImg from "../assets/images/pecan-milk.webp";
+import chocolatePecanMilkImg from "../assets/images/chocolate-pecan-milk.webp";
 ---
 
 <section class="products" aria-label="Our products">
-  <div class="products__layout">
-    <div class="products__card products__card--left">
-      <ProductCard
-        name="Pecan Milk"
-        price="$14.00"
-        description="Pecans, filtered water, vanilla, salt"
-        image={pecanMilkImg}
-        slug="pecan-milk"
-        rotation={-1.62}
-      />
+    <div class="products__layout">
+        <div class="products__card products__card--left">
+            <ProductCard
+                name="Pecan Milk"
+                price="$14.00"
+                description="Pecans, filtered water, salt"
+                image={pecanMilkImg}
+                slug="pecan-milk"
+                rotation={-1.62}
+            />
+        </div>
+        <div class="products__card products__card--right">
+            <ProductCard
+                name="Chocolate Pecan Milk"
+                price="$14.00"
+                description="Pecans, filtered water, cacao, salt"
+                image={chocolatePecanMilkImg}
+                slug="chocolate-pecan-milk"
+                rotation={1.8}
+            />
+        </div>
     </div>
-    <div class="products__card products__card--right">
-      <ProductCard
-        name="Chocolate Pecan Milk"
-        price="$14.00"
-        description="Pecans, filtered water, cacao, vanilla, salt"
-        image={chocolatePecanMilkImg}
-        slug="chocolate-pecan-milk"
-        rotation={1.8}
-      />
-    </div>
-  </div>
 </section>
 
 <style>
-  .products {
-    position: relative;
-    z-index: 0;
-    max-width: var(--page-max);
-    margin: 0 auto;
-    padding: 40px 20px;
-    overflow: visible;
-  }
-
-  @media (min-width: 769px) {
     .products {
-      margin-top: -60px;
+        position: relative;
+        z-index: 0;
+        max-width: var(--page-max);
+        margin: 0 auto;
+        padding: 40px 20px;
+        overflow: visible;
     }
-  }
 
-  /* Figma: section is 1439px wide.
+    @media (min-width: 769px) {
+        .products {
+            margin-top: -60px;
+        }
+    }
+
+    /* Figma: section is 1439px wide.
      Left card: x=254, w=482 (card inner 468px)
      Right card: x=717, w=484 (card inner 468px), top offset ~132px */
-  .products__layout {
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-
-  .products__card--left {
-    justify-self: end;
-    margin-right: 15px;
-  }
-
-  .products__card--right {
-    justify-self: start;
-    margin-left: 15px;
-    margin-top: clamp(80px, 9.17vw, 132px);
-  }
-
-  @media (max-width: 768px) {
     .products__layout {
-      grid-template-columns: 1fr;
-      gap: 40px;
-      justify-items: center;
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 1200px;
+        margin: 0 auto;
     }
 
-    .products__card--left,
-    .products__card--right {
-      margin-left: 0;
-      margin-right: 0;
-      justify-self: center;
-      width: 70vw;
+    .products__card--left {
+        justify-self: end;
+        margin-right: 15px;
     }
 
     .products__card--right {
-      margin-top: 0;
+        justify-self: start;
+        margin-left: 15px;
+        margin-top: clamp(80px, 9.17vw, 132px);
     }
-  }
+
+    @media (max-width: 768px) {
+        .products__layout {
+            grid-template-columns: 1fr;
+            gap: 40px;
+            justify-items: center;
+        }
+
+        .products__card--left,
+        .products__card--right {
+            margin-left: 0;
+            margin-right: 0;
+            justify-self: center;
+            width: 70vw;
+        }
+
+        .products__card--right {
+            margin-top: 0;
+        }
+    }
 </style>

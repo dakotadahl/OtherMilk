@@ -1,206 +1,231 @@
 ---
-import AgentationToolbar from '../components/AgentationToolbar';
+import AgentationToolbar from "../components/AgentationToolbar";
 
 interface Props {
-  title?: string;
-  description?: string;
-  canonicalURL?: string;
-  ogImage?: string;
+    title?: string;
+    description?: string;
+    canonicalURL?: string;
+    ogImage?: string;
 }
 
 const {
-  title = 'Other Milk — Locally Sourced Small-Batch Pecan Milk',
-  description = 'No gums, no fillers, no oils — just The Good Stuff. Subscribe for weekly pecan milk delivery in Chattanooga.',
-  canonicalURL = Astro.url.href,
-  ogImage = '/images/og.jpg',
+    title = "Other Milk — Locally Sourced Small-Batch Pecan Milk",
+    description = "No gums, no fillers, no oils — just The Good Stuff. Subscribe for weekly pecan milk delivery in Chattanooga.",
+    canonicalURL = Astro.url.href,
+    ogImage = "/images/og.jpg",
 } = Astro.props;
 
 const siteURL = Astro.site?.origin ?? Astro.url.origin;
-const absoluteOgImage = ogImage.startsWith('http') ? ogImage : `${siteURL}${ogImage}`;
+const absoluteOgImage = ogImage.startsWith("http")
+    ? ogImage
+    : `${siteURL}${ogImage}`;
 
 const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "LocalBusiness",
-      "name": "Other Milk",
-      "description": description,
-      "url": siteURL,
-      "logo": `${siteURL}/images/logomark.svg`,
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Chattanooga",
-        "addressRegion": "TN",
-        "addressCountry": "US"
-      }
-    },
-    {
-      "@type": "Product",
-      "name": "Pecan Milk",
-      "image": `${siteURL}/images/pecan-milk.jpg`,
-      "description": "Pecans, filtered water, cacao, vanilla, salt",
-      "brand": { "@type": "Brand", "name": "Other Milk" },
-      "offers": {
-        "@type": "Offer",
-        "price": "14.00",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      }
-    },
-    {
-      "@type": "Product",
-      "name": "Chocolate Pecan Milk",
-      "image": `${siteURL}/images/chocolate-pecan-milk.jpg`,
-      "description": "Pecans, filtered water, cacao, vanilla, salt",
-      "brand": { "@type": "Brand", "name": "Other Milk" },
-      "offers": {
-        "@type": "Offer",
-        "price": "14.00",
-        "priceCurrency": "USD",
-        "availability": "https://schema.org/InStock"
-      }
-    }
-  ]
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+            "@type": "LocalBusiness",
+            name: "Other Milk",
+            description: description,
+            url: siteURL,
+            logo: `${siteURL}/images/logomark.svg`,
+            address: {
+                "@type": "PostalAddress",
+                addressLocality: "Chattanooga",
+                addressRegion: "TN",
+                addressCountry: "US",
+            },
+        },
+        {
+            "@type": "Product",
+            name: "Pecan Milk",
+            image: `${siteURL}/images/pecan-milk.jpg`,
+            description: "Pecans, filtered water, cacao, salt",
+            brand: { "@type": "Brand", name: "Other Milk" },
+            offers: {
+                "@type": "Offer",
+                price: "14.00",
+                priceCurrency: "USD",
+                availability: "https://schema.org/InStock",
+            },
+        },
+        {
+            "@type": "Product",
+            name: "Chocolate Pecan Milk",
+            image: `${siteURL}/images/chocolate-pecan-milk.jpg`,
+            description: "Pecans, filtered water, cacao, salt",
+            brand: { "@type": "Brand", name: "Other Milk" },
+            offers: {
+                "@type": "Offer",
+                price: "14.00",
+                priceCurrency: "USD",
+                availability: "https://schema.org/InStock",
+            },
+        },
+    ],
 };
 ---
 
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content={description} />
-    <meta name="theme-color" content="#FFF9F1" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-    <link rel="canonical" href={canonicalURL} />
-    <title>{title}</title>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="description" content={description} />
+        <meta name="theme-color" content="#FFF9F1" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32.png"
+        />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+        <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-touch-icon.png"
+        />
+        <link rel="canonical" href={canonicalURL} />
+        <title>{title}</title>
 
-    <!-- Open Graph -->
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content={description} />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content={absoluteOgImage} />
-    <meta property="og:url" content={canonicalURL} />
+        <!-- Open Graph -->
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content={absoluteOgImage} />
+        <meta property="og:url" content={canonicalURL} />
 
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={absoluteOgImage} />
+        <!-- Twitter Card -->
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={absoluteOgImage} />
 
-    <!-- Structured Data (JSON-LD) -->
-    <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+        <!-- Structured Data (JSON-LD) -->
+        <script
+            type="application/ld+json"
+            set:html={JSON.stringify(structuredData)}
+        />
 
-    <!-- Privacy-friendly analytics by Plausible -->
-    <script async src="https://plausible.io/js/pa-35eLf4_p-YFk3rF76cDfh.js"></script>
-    <script>
-      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
-      plausible.init()
-    </script>
+        <!-- Privacy-friendly analytics by Plausible -->
+        <script async src="https://plausible.io/js/pa-35eLf4_p-YFk3rF76cDfh.js"
+        ></script>
+        <script>
+            ((window.plausible =
+                window.plausible ||
+                function () {
+                    (plausible.q = plausible.q || []).push(arguments);
+                }),
+                (plausible.init =
+                    plausible.init ||
+                    function (i) {
+                        plausible.o = i || {};
+                    }));
+            plausible.init();
+        </script>
 
-    <!-- Preload display font -->
-    <link
-      rel="preload"
-      href="/fonts/Krana Fat B.woff"
-      as="font"
-      type="font/woff"
-      crossorigin
-    />
-    <link
-      rel="preload"
-      href="/fonts/GT-Walsheim-Bold.otf"
-      as="font"
-      type="font/otf"
-      crossorigin
-    />
-  </head>
-  <body>
-    <a href="#main" class="skip-link">Skip to content</a>
-    <slot />
-    <script is:inline>
-      window.subblyConfig = {
-        apiKey: 'b5808932-aff4-4691-bc1f-9671ddfa1cb6',
-        settings: {
-          interceptProductLinks: true,
-          cartCounterEl: '.subbly-cart-product-count',
-          cartToggleEl: '.subbly-cart',
-          cartButton: false
-        }
-      }
-    </script>
-    <script is:inline>
-      if ('requestIdleCallback' in window) {
-        requestIdleCallback(function () {
-          var s = document.createElement('script');
-          s.type = 'module';
-          s.src = 'https://assets.subbly.co/cart/cart-widget.js';
-          document.body.appendChild(s);
-        });
-      } else {
-        window.addEventListener('load', function () {
-          var s = document.createElement('script');
-          s.type = 'module';
-          s.src = 'https://assets.subbly.co/cart/cart-widget.js';
-          document.body.appendChild(s);
-        });
-      }
-    </script>
-    {import.meta.env.DEV && <AgentationToolbar client:only="react" />}
-  </body>
+        <!-- Preload display font -->
+        <link
+            rel="preload"
+            href="/fonts/Krana Fat B.woff"
+            as="font"
+            type="font/woff"
+            crossorigin
+        />
+        <link
+            rel="preload"
+            href="/fonts/GT-Walsheim-Bold.otf"
+            as="font"
+            type="font/otf"
+            crossorigin
+        />
+    </head>
+    <body>
+        <a href="#main" class="skip-link">Skip to content</a>
+        <slot />
+        <script is:inline>
+            window.subblyConfig = {
+                apiKey: "b5808932-aff4-4691-bc1f-9671ddfa1cb6",
+                settings: {
+                    interceptProductLinks: true,
+                    cartCounterEl: ".subbly-cart-product-count",
+                    cartToggleEl: ".subbly-cart",
+                    cartButton: false,
+                },
+            };
+        </script>
+        <script is:inline>
+            if ("requestIdleCallback" in window) {
+                requestIdleCallback(function () {
+                    var s = document.createElement("script");
+                    s.type = "module";
+                    s.src = "https://assets.subbly.co/cart/cart-widget.js";
+                    document.body.appendChild(s);
+                });
+            } else {
+                window.addEventListener("load", function () {
+                    var s = document.createElement("script");
+                    s.type = "module";
+                    s.src = "https://assets.subbly.co/cart/cart-widget.js";
+                    document.body.appendChild(s);
+                });
+            }
+        </script>
+        {import.meta.env.DEV && <AgentationToolbar client:only="react" />}
+    </body>
 </html>
 
 <style is:global>
-  /* ── @font-face ── */
+    /* ── @font-face ── */
 
-  @font-face {
-    font-family: 'Krana Fat';
-    src: url('/fonts/Krana Fat B.woff') format('woff'),
-         url('/fonts/Krana Fat B.eot') format('embedded-opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: "Krana Fat";
+        src:
+            url("/fonts/Krana Fat B.woff") format("woff"),
+            url("/fonts/Krana Fat B.eot") format("embedded-opentype");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
 
-  @font-face {
-    font-family: 'GT Walsheim';
-    src: url('/fonts/GT-Walsheim-Regular.otf') format('opentype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: "GT Walsheim";
+        src: url("/fonts/GT-Walsheim-Regular.otf") format("opentype");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
 
-  @font-face {
-    font-family: 'GT Walsheim';
-    src: url('/fonts/GT-Walsheim-Regular-Oblique.otf') format('opentype');
-    font-weight: 400;
-    font-style: oblique;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: "GT Walsheim";
+        src: url("/fonts/GT-Walsheim-Regular-Oblique.otf") format("opentype");
+        font-weight: 400;
+        font-style: oblique;
+        font-display: swap;
+    }
 
-  @font-face {
-    font-family: 'GT Walsheim';
-    src: url('/fonts/GT-Walsheim-Bold.otf') format('opentype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: "GT Walsheim";
+        src: url("/fonts/GT-Walsheim-Bold.otf") format("opentype");
+        font-weight: 700;
+        font-style: normal;
+        font-display: swap;
+    }
 
-  @font-face {
-    font-family: 'GT Walsheim';
-    src: url('/fonts/GT-Walsheim-Bold-Oblique.otf') format('opentype');
-    font-weight: 700;
-    font-style: oblique;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: "GT Walsheim";
+        src: url("/fonts/GT-Walsheim-Bold-Oblique.otf") format("opentype");
+        font-weight: 700;
+        font-style: oblique;
+        font-display: swap;
+    }
 
-  @font-face {
-    font-family: 'Melany Lane';
-    src: url('/fonts/MelanyLane.woff2') format('woff2');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-  }
+    @font-face {
+        font-family: "Melany Lane";
+        src: url("/fonts/MelanyLane.woff2") format("woff2");
+        font-weight: 400;
+        font-style: normal;
+        font-display: swap;
+    }
 </style>
